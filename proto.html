@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>A.I. Musikquiz: 2010's</title>
+<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet"> 
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f;
+            padding: 10px;
+        }
+
+        #game {
+            max-width: 600px;
+            margin: auto;
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        #songImage {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #introPage {
+            text-align: center;
+        }
+
+        #songName {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #00fffb;
+            color: #201b1b;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #00fffb90;
+        }
+        #topLeftButton {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #00fffb;
+            color: #201b1b;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #topLeftButton:hover {
+            background-color: #00fffb90;
+        }
+    
+#songYear {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}</style>
+</head>
+<a href="https://teislebeck.github.io/quiz.html" id="topLeftButton">Hjem</a>
+<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
+<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
+<div style="text-align: center;">
+<h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">A.I. Musikquiz: 2010's</h1>
+</div>
+<div id="introPage">
+<img src="https://cdn.midjourney.com/52c42c3f-0557-41a3-9db3-1645479e7255/0_3.webp" alt="2010s" width="500" height="500">
+<p style="font-family: Arial, sans-serif; color: #00fffb; padding-top: 15px;">Ved hjælp at kunstig intelligens, er der lavet 13 billeder, som hver reprænsenterer en bestemt sang.</p>
+<p style="font-family: Arial, sans-serif; color: #00fffb;">Gæt hvilken sang, som billedet viser.</p>
+<button id="startButton">Start quizzen</button>
+</div>
+<div id="game">
+<img id="songImage" src=""/>
+<div id="songName" style="display: none;"></div>
+<div id="spotifyPlayer"></div>
+<button id="revealButton" style="display: none;">Se svaret</button>
+<button id="nextButton" style="display: none;">Næste billede</button>
+</div>
+<div id="introPage">
+<p style="font-family: 'Roboto', sans-serif; color: #717171; font-size: 10px;">Made by Teis Lebeck</p>
+</div>
+<script>
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray;
+    
+        // get size of window
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    
+        class Particle {
+        constructor(x, y, size, speed) {
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.speed = speed;
+        }
+
+        // method to draw individual particle
+        draw() {
+            ctx.fillStyle = 'rgba(173, 216, 230, 0.8)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // update particle movement
+        update() {
+            this.x += this.speed;
+            if (this.x > canvas.width) {
+                this.x = 0 - this.size;
+                this.y = Math.random() * canvas.height;
+            }
+            this.draw();
+        }
+    }
+
+    // create particle array
+    function init() {
+        particlesArray = [];
+        let numberOfParticles = (canvas.height * canvas.width) / 30000;
+        for (let i = 0; i < numberOfParticles; i++) {
+            let size = Math.random() * 5 + 1;
+            let x = Math.random() * canvas.width;
+            let y = Math.random() * canvas.height;
+            let speed = Math.random() * 3 + 1;
+            particlesArray.push(new Particle(x, y, size, speed));
+        }
+    }
+
+    // animate particles
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+        }
+        requestAnimationFrame(animateParticles);
+    }
+
+    // reinitialize canvas on window resize
+    window.addEventListener('resize', function () {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        init();
+    });
+
+    // call init() and animateParticles() to start the animation
+    init();
+    animateParticles();
+    </script>
+<script>
+        function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+        var songs = [
+            {name: 'Placeholder', image: '', spotifyId: ''},
+            {name: 'Timber', image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1094636520729747617/johnny_a_man_cutting_down_tall_tree_timber_b2a657eb-8318-4e39-b8ed-6714d58e45da.png', spotifyId: '3cHyrEgdyYRjgJKSOiOtcS'},
+            {name: 'Mirrors', image: 'https://cdn.midjourney.com/22dd6891-cbc7-4535-a65d-59f8ca01629c/0_2.png', spotifyId: '4rHZZAmHpZrA3iH5zx8frV'},
+            {name: 'Mask off', image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1094686426731388938/johnny_person_removing_a_mask_95a82a98-f98e-4c68-8108-bd7cfa0c41cd.png', spotifyId: '0VgkVdmE4gld66l8iyGjgx'},
+            {name: 'Blinding lights', image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1094627407094358146/johnny_a_person_holding_up_their_hand_to_block_sunlight_eb6f7e50-7b38-479d-a9dc-66cd7cd15605.png', spotifyId: '0VjIjW4GlUZAMYd2vXMi3b'},
+            {name: 'Murder on the dancefloor', image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1094597289315680286/johnny_crime_scene_at_a_dance_floot_police_tape_disco_ball_42b5c8e2-4733-4f8a-9903-6a6b1736f23f.png', spotifyId: '2Za2mUwmQoSxWPscaY2vxl'},
+            {name: 'Radioactive', image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1094628332697550919/johnny_radioactivity_nuclear_fa71a0a6-d4ba-48e5-9530-0c645191acc6.png', spotifyId: '62yJjFtgkhUrXktIoSjgP2'},
+            {name: "God's plan", image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1094629713462435870/johnny_god_drawing_on_a_whiteboard_long_white_beard_making_a_pl_01ef087f-c470-40d9-8372-73185b4b39fe.png', spotifyId: '6DCZcSspjsKoFjzjrWoCdn'},
+            {name: 'Cake by the ocean', image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1094638999638921216/johnny_a_birthday_cake_on_the_beach_51045487-bdee-4ba6-99a4-0af75bdd85bb.png', spotifyId: '76hfruVvmfQbw0eYn1nmeC'},
+            {name: 'Panda', image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1094638702594097303/johnny_a_hip_hop_panda_1e3b9a4f-46f9-4729-a91a-298581843926.png', spotifyId: '275a9yzwGB6ncAW4SxY7q3'},
+            {name: 'Girl on fire', image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1094634246808797234/johnny_a_women_standing_among_flames_51607835-0516-49d9-af44-2e3d2d936dd2.png', spotifyId: '4esOae7i4rqTbAu9o5Pxco'},
+            {name: 'International love', image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1094644581557092383/johnny_planet_earth_surrounded_by_hearts_8dfe2fd7-3e31-4ae1-9138-248aafb5ba02.png', spotifyId: '62zFEHfAYl5kdHYOivj4BC'},
+            {name: 'Bumpy ride', image: 'https://cdn.discordapp.com/attachments/1059412006073016340/1095817647330955274/johnny_a_car_riding_over_bumpy_hills_bouncing_bd3f44a1-a243-4a48-932b-4296992ecc5b.png', spotifyId: '71R6zJsrF3ffc3TBFHfivX'},
+            {name: 'Galway girl', image: 'https://cdn.midjourney.com/52ca5e96-a430-4c03-8aa2-cd2cf678e596/0_1.png', spotifyId: '0afhq8XCExXpqazXczTSve'},
+        ];
+
+                var currentSong = 0;
+
+        function revealAnswer() {
+            document.getElementById('songName').innerTextz = songs[currentSong].name;
+            document.getElementById('songName').style.display = 'block';
+            document.getElementById('revealButton').style.display = 'none';
+            document.getElementById('nextButton').style.display = 'block';
+            
+            var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+            document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
+        }
+
+        function nextSong() {
+            currentSong++;
+            if (currentSong < songs.length) {
+                document.getElementById('songImage').src = songs[currentSong].image;
+                document.getElementById('songName').style.display = 'none';
+                document.getElementById('spotifyPlayer').innerHTML = '';
+                document.getElementById('revealButton').style.display = 'block';
+                document.getElementById('nextButton').style.display = 'none';
+            } else {
+                document.getElementById('game').innerHTML = 'Så er der sgu ikke flere billeder. Genindlæs siden for at starte forfra.';
+            }
+        }
+
+        document.getElementById('revealButton').onclick = revealAnswer;
+        document.getElementById('nextButton').onclick = nextSong;
+    </script>
+<script>
+        document.getElementById('startButton').onclick = function() {
+        document.getElementById('introPage').style.display = 'none';
+        document.getElementById('game').style.display = 'block';
+        document.getElementById('songImage').src = songs[currentSong].image;
+        document.getElementById('revealButton').style.display = 'block';
+        nextSong();
+        };
+    </script>
+</body>
+</html>
