@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>A.I. Musikquiz: 1990's</title>
+<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet"> 
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f;
+            padding: 10px;
+        }
+
+        #game {
+            max-width: 600px;
+            margin: auto;
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0);
+        }
+
+        #songImage {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #introPage {
+            text-align: center;
+        }
+
+        #songName {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #00fffb;
+            color: #201b1b;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #00fffb90;
+        }
+        #topLeftButton {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #00fffb;
+            color: #201b1b;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #topLeftButton:hover {
+            background-color: #00fffb90;
+        }
+    
+#songYear {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}</style>
+</head>
+<a href="https://teislebeck.github.io/quiz.html" id="topLeftButton">Hjem</a>
+<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
+<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
+<div style="text-align: center;">
+<h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">A.I. Musikquiz: 1990's</h1>
+</div>
+<div id="introPage">
+<img src="https://cdn.midjourney.com/03afb2af-0717-405a-9763-593d09528d2d/0_0.webp" alt="2010s" width="500" height="500">
+<p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Antal billeder: 10</p>
+<button id="startButton">Start quizzen</button>
+</div>
+<div id="game">
+<img id="songImage" src=""/>
+<div id="songName" style="display: none;"></div>
+<div id="spotifyPlayer"></div>
+<button id="revealButton" style="display: none;">Se svaret</button>
+<button id="nextButton" style="display: none;">Næste billede</button>
+</div>
+<div id="introPage">
+<p style="font-family: 'Roboto', sans-serif; color: #717171; font-size: 10px;">Github @TeisLebeck</p>
+</div>
+<script>
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray;
+    
+        // get size of window
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    
+        class Particle {
+        constructor(x, y, size, speed) {
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.speed = speed;
+        }
+
+        // method to draw individual particle
+        draw() {
+            ctx.fillStyle = 'rgba(173, 216, 230, 0.8)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // update particle movement
+        update() {
+            this.x += this.speed;
+            if (this.x > canvas.width) {
+                this.x = 0 - this.size;
+                this.y = Math.random() * canvas.height;
+            }
+            this.draw();
+        }
+    }
+
+    // create particle array
+    function init() {
+        particlesArray = [];
+        let numberOfParticles = (canvas.height * canvas.width) / 30000;
+        for (let i = 0; i < numberOfParticles; i++) {
+            let size = Math.random() * 5 + 1;
+            let x = Math.random() * canvas.width;
+            let y = Math.random() * canvas.height;
+            let speed = Math.random() * 3 + 1;
+            particlesArray.push(new Particle(x, y, size, speed));
+        }
+    }
+
+    // animate particles
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+        }
+        requestAnimationFrame(animateParticles);
+    }
+
+    // reinitialize canvas on window resize
+    window.addEventListener('resize', function () {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        init();
+    });
+
+    // call init() and animateParticles() to start the animation
+    init();
+    animateParticles();
+    </script>
+<script>
+        function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+        var songs = [
+            {name: 'Placeholder', image: '', spotifyId: ''},
+            {name: 'Ice ice baby', image: 'https://cdn.midjourney.com/17b0381f-4392-4c9f-8bcd-f6098e5ba8fd/0_0.png', spotifyId: '11d9oUiwHuYt216EFA2tiz'},
+            {name: '..Baby One More Time', image: 'https://cdn.midjourney.com/c580830f-6a11-40ea-9265-5928eb00130d/0_0.webp', spotifyId: ''},
+            {name: 'Breakfast at Tiffanys', image: 'https://cdn.midjourney.com/d9afc48a-39d5-48a9-8125-74b3143bfaf5/0_3.webp', spotifyId: ''},
+            {name: 'Wonderwall', image: 'https://cdn.midjourney.com/ade80768-8530-4ab2-b747-17f78ddf6635/0_2.webp', spotifyId: ''},
+            {name: 'Hypnotize', image: 'https://cdn.midjourney.com/f23c28db-b981-4365-b6ef-9384629803eb/0_1.webp', spotifyId: ''},
+            {name: 'Under the bridge', image: 'https://cdn.midjourney.com/5b83657b-c7d8-46a0-81df-d154b7b9afcd/0_1.webp', spotifyId: ''},
+            {name: 'Thunderstruck', image: 'https://cdn.midjourney.com/3849d82d-f7c8-4fa4-988c-0011ac03af7f/0_1.webp', spotifyId: ''},
+            {name: 'Angels', image: 'https://cdn.midjourney.com/16cdd6f4-681e-4d58-814e-25df616d5aeb/0_0.webp', spotifyId: ''},
+            {name: 'Enter sandman', image: 'https://cdn.midjourney.com/ee41cfad-3fa6-4eee-aae2-de5c1d2269be/0_0.png', spotifyId: '5sICkBXVmaCQk5aISGR3x1'},
+            {name: 'Pretty fly (for a white guy)', image: 'https://cdn.midjourney.com/d1597cdd-db48-484a-9a42-ff7a072ab8c4/0_0.webp', spotifyId: ''},
+            {name: 'My heart will go on', image: 'https://cdn.midjourney.com/be811c7a-788e-4e04-927d-20bc4c143f44/0_3.webp', spotifyId: ''},
+        ];
+
+                var currentSong = 0;
+
+        function revealAnswer() {
+            document.getElementById('songName').innerTextz = songs[currentSong].name;
+            document.getElementById('songName').style.display = 'block';
+            document.getElementById('revealButton').style.display = 'none';
+            document.getElementById('nextButton').style.display = 'block';
+            
+            var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+            document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
+        }
+
+        function nextSong() {
+            currentSong++;
+            if (currentSong < songs.length) {
+                document.getElementById('songImage').src = songs[currentSong].image;
+                document.getElementById('songName').style.display = 'none';
+                document.getElementById('spotifyPlayer').innerHTML = '';
+                document.getElementById('revealButton').style.display = 'block';
+                document.getElementById('nextButton').style.display = 'none';
+            } else {
+                var noMoreSongsElement = document.getElementById('game');
+                noMoreSongsElement.innerHTML = '';  // Clear existing content
+                var imageElement = document.createElement('img');
+                imageElement.src = 'https://teislebeck.github.io/images/end.png';  // Replace with the path to your image file
+                imageElement.alt = 'No More Songs Image';  // Optional alt text for accessibility
+                imageElement.width = 500;  // Set the width to 500 pixels
+                imageElement.height = 500; // Set the height to 500 pixels
+                imageElement.style.display = 'block'; // Ensure it's a block-level element
+                imageElement.style.margin = 'auto';  // Center the image horizontally
+                noMoreSongsElement.appendChild(imageElement);
+            }
+        }
+
+        document.getElementById('revealButton').onclick = revealAnswer;
+        document.getElementById('nextButton').onclick = nextSong;
+    </script>
+<script>
+        document.getElementById('startButton').onclick = function() {
+        document.getElementById('introPage').style.display = 'none';
+        document.getElementById('game').style.display = 'block';
+        document.getElementById('songImage').src = songs[currentSong].image;
+        document.getElementById('revealButton').style.display = 'block';
+        nextSong();
+        };
+    </script>
+</body>
+</html>
