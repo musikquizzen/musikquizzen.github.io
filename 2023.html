@@ -91,8 +91,8 @@
 <h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Best of 2023</h1>
 </div>
 <div id="introPage">
-<img src="https://cdn.midjourney.com/0a555ad5-79e5-42db-8153-33f1b6587054/0_2.webp" alt="2000s" width="500" height="500">
-<p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Antal billeder: 14</p>
+<img src="https://cdn.midjourney.com/210cb6c2-5aaa-45f4-a04d-eecfd928dd28/0_1.webp" alt="2000s" width="500" height="500">
+<p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Antal billeder: 11</p>
 <button id="startButton">Start quizzen</button>
 </div>
 <div id="game">
@@ -185,25 +185,16 @@
         var songs = [
             {name: 'Placeholder', image: '', spotifyId: ''},
             {name: 'Paint the town red', image: 'https://cdn.midjourney.com/5066f74c-624a-45f6-acb5-e81afe7a0e96/0_3.webp', spotifyId: '2IGMVunIBsBLtEQyoI1Mu7'},
-            {name: 'Barbie world', image: 'https://cdn.midjourney.com/c14ffb3f-00af-4641-ac27-f705f487ed7a/0_0.webp', spotifyId: 'https://cdn.midjourney.com/c14ffb3f-00af-4641-ac27-f705f487ed7a/0_0.webp'},
-            {name: 'Prada', image: 'https://cdn.midjourney.com/c14ffb3f-00af-4641-ac27-f705f487ed7a/0_0.webp', spotifyId: 'https://cdn.midjourney.com/c14ffb3f-00af-4641-ac27-f705f487ed7a/0_0.webp'},
-            {name: 'Greedy', image: 'https://cdn.midjourney.com/8458ea6b-6ba6-4e62-ad3d-acf9f34b44bb/0_2.webp', spotifyId: 'https://cdn.midjourney.com/8458ea6b-6ba6-4e62-ad3d-acf9f34b44bb/0_2.webp'},
-            {name: 'Flowers', image: 'https://cdn.midjourney.com/e1a36ab3-2c0a-42d8-9d0d-3ee17c0b55af/0_0.webp', spotifyId: 'https://cdn.midjourney.com/e1a36ab3-2c0a-42d8-9d0d-3ee17c0b55af/0_0.webp'},
-            {name: 'Calm down', image: 'ttps://cdn.midjourney.com/c3f98160-6824-4d7b-8b98-20faf5f5052f/0_3.webp', spotifyId: 'https://cdn.midjourney.com/c3f98160-6824-4d7b-8b98-20faf5f5052f/0_3.webp'},
-            {name: 'Under radar', image: 'https://cdn.midjourney.com/2ebf9bb1-2dd8-41e1-b763-bc8a855b7547/0_2.webp', spotifyId: 'https://cdn.midjourney.com/2ebf9bb1-2dd8-41e1-b763-bc8a855b7547/0_2.webp'},
-            {name: 'Moonlight', image: 'https://cdn.midjourney.com/af3ed304-27e3-4424-bc63-1e3aa19a48dd/0_1.webp', spotifyId: ''},
-            {name: 'Unholy', image: 'https://cdn.midjourney.com/c70e15a0-6f93-4071-9470-e0ebd4a978c9/0_1.webp', spotifyId: ''},
-            {name: 'Cruel summer', image: 'https://cdn.midjourney.com/18852840-80c4-431c-8deb-e9a752d8a094/0_3.webp', spotifyId: ''},
-            {name: 'Dance the night', image: 'https://cdn.midjourney.com/590506bd-6a8e-4d7f-9ac3-77851af716d1/0_1.webp', spotifyId: ''},
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            
+            {name: 'Barbie world', image: 'https://cdn.midjourney.com/c14ffb3f-00af-4641-ac27-f705f487ed7a/0_0.webp', spotifyId: '741UUVE2kuITl0c6zuqqbO'},
+            {name: 'Prada', image: 'https://cdn.midjourney.com/c14ffb3f-00af-4641-ac27-f705f487ed7a/0_0.webp', spotifyId: '59NraMJsLaMCVtwXTSia8i'},
+            {name: 'Greedy', image: 'https://cdn.midjourney.com/8458ea6b-6ba6-4e62-ad3d-acf9f34b44bb/0_2.webp', spotifyId: '3rUGC1vUpkDG9CZFHMur1t'},
+            {name: 'Flowers', image: 'https://cdn.midjourney.com/e1a36ab3-2c0a-42d8-9d0d-3ee17c0b55af/0_0.webp', spotifyId: '7DSAEUvxU8FajXtRloy8M0'},
+            {name: 'Calm down', image: 'ttps://cdn.midjourney.com/c3f98160-6824-4d7b-8b98-20faf5f5052f/0_3.webp', spotifyId: '0WtM2NBVQNNJLh6scP13H8'},
+            {name: 'Under radar', image: 'https://cdn.midjourney.com/2ebf9bb1-2dd8-41e1-b763-bc8a855b7547/0_2.webp', spotifyId: '18jOIUboPPzwu84t9GlUKu'},
+            {name: 'Moonlight', image: 'https://cdn.midjourney.com/af3ed304-27e3-4424-bc63-1e3aa19a48dd/0_1.webp', spotifyId: '3neYAjvKDOfvBUpIgReOkC'},
+            {name: 'Unholy', image: 'https://cdn.midjourney.com/c70e15a0-6f93-4071-9470-e0ebd4a978c9/0_1.webp', spotifyId: '3nqQXoyQOWXiESFLlDF1hG'},
+            {name: 'Cruel summer', image: 'https://cdn.midjourney.com/18852840-80c4-431c-8deb-e9a752d8a094/0_3.webp', spotifyId: '1BxfuPKGuaTgP7aM0Bbdwr'},
+            {name: 'Dance the night', image: 'https://cdn.midjourney.com/590506bd-6a8e-4d7f-9ac3-77851af716d1/0_1.webp', spotifyId: '11C4y2Yz1XbHmaQwO06s9f'},
         ];
         
 
