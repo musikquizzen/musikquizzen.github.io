@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Danske Bangers - vol. 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet"> 
+<style>
+        body {
+            font-family: 'Silkscreen', sans-serif;
+            background-color: #1f1f1f;
+            padding: 10px;
+        }
+
+        #game {
+            font-family: 'Silkscreen', sans-serif;    
+            max-width: 600px;
+            margin: auto;
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0);
+        }
+
+        #songImage {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #introPage {
+            font-family: 'Silkscreen', sans-serif;    
+            text-align: center;
+        }
+
+        #songName {
+            font-family: 'Silkscreen', sans-serif;    
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button {
+            font-family: 'Silkscreen', sans-serif;    
+            background-color: #00fffb;
+            color: #201b1b;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #00fffb90;
+        }
+        #topLeftButton {
+            font-family: 'Silkscreen', sans-serif;    
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #00fffb;
+            color: #201b1b;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #topLeftButton:hover {
+            background-color: #00fffb90;
+        }
+    
+#songYear {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}</style>
+</head>
+<a href="https://www.soundofai.com" id="topLeftButton" style="font-family: 'Silkscreen', sans-serif;" target="_self">Hjem</a>
+<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
+<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
+<div style="text-align: center;">
+<h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Danske bangers  🇩🇰 - VOL. 2</h1>
+</div>
+<div id="introPage">
+<img src="https://cdn.midjourney.com/dc237477-6c5a-47d7-b002-c0c8080dc947/0_2.webp" alt="2010s" width="500" height="500">
+<p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Antal billeder: 20</p>
+<button id="startButton">Start quizzen</button>
+</div>
+<div id="game">
+<img id="songImage" src=""/>
+<div id="songName" style="display: none;"></div>
+<div id="spotifyPlayer"></div>
+<button id="revealButton" style="display: none;">Se svaret</button>
+<button id="nextButton" style="display: none;">Næste billede</button>
+</div>
+<div id="introPage">
+<p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
+</div>
+<script>
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray;
+    
+        // get size of window
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    
+        class Particle {
+        constructor(x, y, size, speed) {
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.speed = speed;
+        }
+
+        // method to draw individual particle
+        draw() {
+            ctx.fillStyle = 'rgba(173, 216, 230, 0.8)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // update particle movement
+        update() {
+            this.x += this.speed;
+            if (this.x > canvas.width) {
+                this.x = 0 - this.size;
+                this.y = Math.random() * canvas.height;
+            }
+            this.draw();
+        }
+    }
+
+    // create particle array
+    function init() {
+        particlesArray = [];
+        let numberOfParticles = (canvas.height * canvas.width) / 30000;
+        for (let i = 0; i < numberOfParticles; i++) {
+            let size = Math.random() * 5 + 1;
+            let x = Math.random() * canvas.width;
+            let y = Math.random() * canvas.height;
+            let speed = Math.random() * 3 + 1;
+            particlesArray.push(new Particle(x, y, size, speed));
+        }
+    }
+
+    // animate particles
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+        }
+        requestAnimationFrame(animateParticles);
+    }
+
+    // reinitialize canvas on window resize
+    window.addEventListener('resize', function () {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        init();
+    });
+
+    // call init() and animateParticles() to start the animation
+    init();
+    animateParticles();
+    </script>
+<script>
+        function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+        var songs = [
+            {name: 'Placeholder', image: '', spotifyId: ''},
+            {name: 'Danse i måneskin', image: 'https://cdn.midjourney.com/23b186c4-47af-42e8-920d-a3b2a284385c/0_2.webp', spotifyId: '47f5VH4gBRdqkMtFctiveF'},
+            {name: 'Gutterne', image: 'https://cdn.midjourney.com/86c791b3-c3f5-4284-a7e1-96f5d52adf86/0_1.webp', spotifyId: '4xTlom5tmNmAvQ1FCgtfyM'},
+            {name: 'Mucki bar', image: 'https://cdn.midjourney.com/638d53a4-9746-4676-961a-ba5d8152e178/0_3.webp', spotifyId: '4XhW9iOypxiiNyIMpirPFv'},
+            {name: 'Blå himmel', image: 'https://cdn.midjourney.com/418a16b8-0b0b-4646-8da9-57097451074a/0_0.webp', spotifyId: '0qA2qykpcGdVl3tiiYum4g'},
+            {name: 'Bonsoir Madame', image: 'https://cdn.midjourney.com/4086a689-0ae7-42ca-b5e8-e77b373ecb21/0_1.webp', spotifyId: '1bogz3k48T3WwtErpk87wB'},
+            {name: 'Gulddans', image: 'https://cdn.midjourney.com/b591a7b5-ed2d-4af4-ab5f-70a6decd3e9b/0_1.webp', spotifyId: '7z1L6Edc4sN0WtA8HXH9iJ'},
+            {name: 'Hurtige hænder', image: 'https://cdn.midjourney.com/6f35b9df-5d24-4fad-9a1d-95d519e8ad9d/0_1.webp', spotifyId: '1QBfz0sWrMPrpvxjBPU5Jg'},
+            {name: 'Feberdrømme Xx Dubai', image: 'https://cdn.midjourney.com/96edb402-65cd-4896-a23e-1c3d7cfce8d5/0_3.webp', spotifyId: '22fNmvVD1bC4rWv6hg29pC'},
+            {name: 'Sydpå', image: 'https://cdn.midjourney.com/f61a08de-f714-4537-90ff-3a88c9028483/0_3.webp', spotifyId: '1lahfyqBPVvBIxf3XgmQmZ'},
+            {name: 'Solkongen', image: 'https://cdn.midjourney.com/120bcc94-7baf-464b-9c32-ae31782e36a6/0_1.webp', spotifyId: '35C2waltlc5ymcJuBayTDg'},
+            {name: 'Police Bells & Church Sirens', image: 'https://cdn.midjourney.com/62268536-670b-4dae-bedc-d38ec6f15fba/0_0.webp', spotifyId: '0LLRvWfXAmV7BlFySw5N9i'},
+            {name: 'Allerede is', image: 'https://cdn.midjourney.com/1eba08d1-3cae-4aa7-87bd-97bd5a92f645/0_1.webp', spotifyId: '7kQ5USXOqajlefGbavFfCe'},
+            {name: 'De første kærester på månen', image: 'https://cdn.midjourney.com/350b9286-2529-4fc6-97c7-5c8b109833af/0_2.webp', spotifyId: '1RGL48ceSL1dAgzCgmZTdj'},
+            {name: 'Valby bakke', image: 'https://cdn.midjourney.com/80bfd55b-9612-4c92-b556-f62c10005bad/0_3.webp', spotifyId: '35mxhmxJen5eRB0bkCJkrT'},
+            {name: 'Stein Bagger', image: 'https://cdn.midjourney.com/2f7c281e-f332-4ef3-b297-33b5373de36b/0_3.webp', spotifyId: '5eX78VCIia3G4A6tbdV5n3'},
+            {name: 'KIDD er din far', image: 'https://cdn.midjourney.com/b1a6815b-9128-490c-8101-ca385f6d0272/0_1.webp', spotifyId: '0fEFSHBaLwvxbSrM5HoF5h'},
+            {name: 'Vilde kaniner', image: 'https://cdn.midjourney.com/705a4552-e92a-4473-a091-2464c9b3602f/0_2.webp', spotifyId: '40QBAl5ijcFWV7A2fKjYH5'},
+            {name: 'Drømmer jeg', image: 'https://cdn.midjourney.com/6db616b5-3242-44b7-a673-ec74467e0ede/0_3.webp', spotifyId: '0J3LsonEK3aD0oozS9EBWJ'},
+            {name: 'Fugle', image: 'https://cdn.midjourney.com/277eb6dc-d6aa-44e9-b64a-a273fcdaa50b/0_1.webp', spotifyId: '7qdykONOD1KESBGqyRDSkO'},
+            {name: 'Jeg Vil La Lyset Brænde', image: 'https://cdn.midjourney.com/68c51989-2083-45c6-bac8-b9fee11af8f4/0_3.webp', spotifyId: '1rRcFwE1ydO2Y5jSmk1UIs'},
+            {name: 'Regndans', image: 'https://cdn.midjourney.com/f372703b-85b6-435c-97a8-40de47f7a791/0_0.webp', spotifyId: '0SRegj5vaB5EGrGousGJQ0'},           
+            ]
+                var currentSong = 0;
+
+        function revealAnswer() {
+            document.getElementById('songName').innerTextz = songs[currentSong].name;
+            document.getElementById('songName').style.display = 'block';
+            document.getElementById('revealButton').style.display = 'none';
+            document.getElementById('nextButton').style.display = 'block';
+            
+            var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+            document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
+        }
+
+        function nextSong() {
+            currentSong++;
+            if (currentSong < songs.length) {
+                document.getElementById('songImage').src = songs[currentSong].image;
+                document.getElementById('songName').style.display = 'none';
+                document.getElementById('spotifyPlayer').innerHTML = '';
+                document.getElementById('revealButton').style.display = 'block';
+                document.getElementById('nextButton').style.display = 'none';
+            } else {
+                var noMoreSongsElement = document.getElementById('game');
+                noMoreSongsElement.innerHTML = '';  // Clear existing content
+                var imageElement = document.createElement('img');
+                imageElement.src = 'https://teislebeck.github.io/images/end.png';  // Replace with the path to your image file
+                imageElement.alt = 'No More Songs Image';  // Optional alt text for accessibility
+                imageElement.width = 500;  // Set the width to 500 pixels
+                imageElement.height = 500; // Set the height to 500 pixels
+                imageElement.style.display = 'block'; // Ensure it's a block-level element
+                imageElement.style.margin = 'auto';  // Center the image horizontally
+                noMoreSongsElement.appendChild(imageElement);
+            }
+        }
+
+        document.getElementById('revealButton').onclick = revealAnswer;
+        document.getElementById('nextButton').onclick = nextSong;
+    </script>
+<script>
+        document.getElementById('startButton').onclick = function() {
+        document.getElementById('introPage').style.display = 'none';
+        document.getElementById('game').style.display = 'block';
+        document.getElementById('songImage').src = songs[currentSong].image;
+        document.getElementById('revealButton').style.display = 'block';
+        nextSong();
+        };
+    </script>
+</body>
+</html>
