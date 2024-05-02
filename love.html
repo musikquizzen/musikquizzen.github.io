@@ -13,10 +13,10 @@ body {
 
 #game {
     font-family: 'Silkscreen', sans-serif;    
-    max-width: 600px;
+    max-width: 90%; /* Adjusted max-width */
     margin: auto;
     background-color: transparent;
-    padding: 20px;
+    padding: 2vw; /* Adjusted padding */
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0);
 }
@@ -24,7 +24,7 @@ body {
 #songImage {
     max-width: 100%;
     height: auto;
-    width: 300px; /* Adjusted image width */
+    width: 100%; /* Adjusted width */
 }
 
 #introPage {
@@ -34,9 +34,9 @@ body {
 
 #songName {
     font-family: 'Silkscreen', sans-serif;    
-    font-size: 20px; /* Reduced font size */
+    font-size: 4vw; /* Adjusted font size */
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 3vw; /* Adjusted margin */
 }
 
 button {
@@ -44,12 +44,12 @@ button {
     background-color: #00fffb;
     color: #201b1b;
     border: none;
-    padding: 8px 16px; /* Smaller padding */
+    padding: 2vw 4vw; /* Adjusted padding */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px; /* Reduced font size */
-    margin: 10px 2px; /* Reduced margin */
+    font-size: 2vw; /* Adjusted font size */
+    margin: 2vw 1vw; /* Adjusted margin */
     cursor: pointer;
     border-radius: 5px;
 }
@@ -61,16 +61,16 @@ button:hover {
 #topLeftButton {
     font-family: 'Silkscreen', sans-serif;    
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 2vw; /* Adjusted top */
+    left: 2vw; /* Adjusted left */
     background-color: #00fffb;
     color: #201b1b;
     border: none;
-    padding: 8px 16px; /* Smaller padding */
+    padding: 2vw 4vw; /* Adjusted padding */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px; /* Reduced font size */
+    font-size: 2vw; /* Adjusted font size */
     border-radius: 5px;
     cursor: pointer;
 }
@@ -80,9 +80,9 @@ button:hover {
 }
 
 #songYear {
-    font-size: 16px; /* Reduced font size */
+    font-size: 3vw; /* Adjusted font size */
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 2vw; /* Adjusted margin */
 }
 </style>
 </head>
@@ -93,8 +93,8 @@ button:hover {
 <h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Love and heart break 💕 (2000-Current)</h1>
 </div>
 <div id="introPage">
-<img src="https://cdn.midjourney.com/a5d2f6ec-fac8-44a4-bc5e-42fcce3b4abf/0_1.webp" alt="love" width="300" height="300"> <!-- Adjusted image size -->
-<p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Images: 12</p>
+<img src="https://cdn.midjourney.com/a5d2f6ec-fac8-44a4-bc5e-42fcce3b4abf/0_1.webp" alt="love" style="width: 90vw; max-width: 500px;"> <!-- Adjusted image size -->
+<p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 2vw;">Images: 12</p> <!-- Adjusted padding -->
 <button id="startButton">Start quiz</button>
 </div>
 <div id="game" style="display: none;"> <!-- Adjusted display property -->
@@ -105,7 +105,7 @@ button:hover {
 <button id="nextButton" style="display: none;">Next</button>
 </div>
 <div id="introPage">
-<p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
+<p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 2vw;">Teis Lebeck</p> <!-- Adjusted font size -->
 </div>
 <script>
     const canvas = document.getElementById('background-canvas');
@@ -184,7 +184,7 @@ button:hover {
             [array[i], array[j]] = [array[j], array[i]];
         }
     }
-    
+
     var songs = [
         {name: 'Placeholder', image: '', spotifyId: ''},
         {name: 'Bleeding love', image: 'https://cdn.midjourney.com/75630c52-5a34-4993-940a-3ba890e38345/0_2.webp', spotifyId: '6LtPIXlIzPOTF8vTecYjRe'},
@@ -204,12 +204,12 @@ button:hover {
     var currentSong = 0;
 
     function revealAnswer() {
-        document.getElementById('songName').innerText = songs[currentSong].name; // Fixed typo
+        document.getElementById('songName').innerText = songs[currentSong].name;
         document.getElementById('songName').style.display = 'block';
         document.getElementById('revealButton').style.display = 'none';
         document.getElementById('nextButton').style.display = 'block';
         
-        var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+        var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="90%" height="20vw" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'; // Adjusted width and height
         document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
     }
 
@@ -227,8 +227,7 @@ button:hover {
             var imageElement = document.createElement('img');
             imageElement.src = 'https://teislebeck.github.io/images/end.png';  // Replace with the path to your image file
             imageElement.alt = 'No More Songs Image';  // Optional alt text for accessibility
-            imageElement.width = 300;  // Set the width to 300 pixels
-            imageElement.height = 300; // Set the height to 300 pixels
+            imageElement.width = '90%';  // Adjusted width
             imageElement.style.display = 'block'; // Ensure it's a block-level element
             imageElement.style.margin = 'auto';  // Center the image horizontally
             noMoreSongsElement.appendChild(imageElement);
