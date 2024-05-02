@@ -5,96 +5,99 @@
 <title>Love and heart break 💕</title>
 <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet"> 
 <style>
-        body {
-            font-family: 'Silkscreen', sans-serif;
-            background-color: #1f1f1f;
-            padding: 10px;
-        }
+body {
+    font-family: 'Silkscreen', sans-serif;
+    background-color: #1f1f1f;
+    padding: 10px;
+}
 
-        #game {
-            font-family: 'Silkscreen', sans-serif;    
-            max-width: 600px;
-            margin: auto;
-            background-color: transparent;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0);
-        }
+#game {
+    font-family: 'Silkscreen', sans-serif;    
+    max-width: 600px;
+    margin: auto;
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0);
+}
 
-        #songImage {
-            max-width: 100%;
-            height: auto;
-        }
+#songImage {
+    max-width: 100%;
+    height: auto;
+    width: 300px; /* Adjusted image width */
+}
 
-        #introPage {
-            font-family: 'Silkscreen', sans-serif;    
-            text-align: center;
-        }
+#introPage {
+    font-family: 'Silkscreen', sans-serif;    
+    text-align: center;
+}
 
-        #songName {
-            font-family: 'Silkscreen', sans-serif;    
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
+#songName {
+    font-family: 'Silkscreen', sans-serif;    
+    font-size: 20px; /* Reduced font size */
+    font-weight: bold;
+    margin-top: 20px;
+}
 
-        button {
-            font-family: 'Silkscreen', sans-serif;    
-            background-color: #00fffb;
-            color: #201b1b;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 20px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+button {
+    font-family: 'Silkscreen', sans-serif;    
+    background-color: #00fffb;
+    color: #201b1b;
+    border: none;
+    padding: 8px 16px; /* Smaller padding */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px; /* Reduced font size */
+    margin: 10px 2px; /* Reduced margin */
+    cursor: pointer;
+    border-radius: 5px;
+}
 
-        button:hover {
-            background-color: #00fffb90;
-        }
-        #topLeftButton {
-            font-family: 'Silkscreen', sans-serif;    
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background-color: #00fffb;
-            color: #201b1b;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        #topLeftButton:hover {
-            background-color: #00fffb90;
-        }
-    
+button:hover {
+    background-color: #00fffb90;
+}
+
+#topLeftButton {
+    font-family: 'Silkscreen', sans-serif;    
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #00fffb;
+    color: #201b1b;
+    border: none;
+    padding: 8px 16px; /* Smaller padding */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px; /* Reduced font size */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#topLeftButton:hover {
+    background-color: #00fffb90;
+}
+
 #songYear {
-    font-size: 18px;
+    font-size: 16px; /* Reduced font size */
     font-weight: bold;
     margin-top: 10px;
-}</style>
+}
+</style>
 </head>
+<body>
 <a href="https://www.soundofai.com" id="topLeftButton" style="font-family: 'Silkscreen', sans-serif;" target="_self">Hjem</a>
 <canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
-<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
 <div style="text-align: center;">
-<h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Love and heart break 💕 (2000-Nu)</h1>
+<h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Love and heart break 💕 (2000-Current)</h1>
 </div>
 <div id="introPage">
-<img src="https://cdn.midjourney.com/a5d2f6ec-fac8-44a4-bc5e-42fcce3b4abf/0_1.webp" alt="love" width="500" height="500">
+<img src="https://cdn.midjourney.com/a5d2f6ec-fac8-44a4-bc5e-42fcce3b4abf/0_1.webp" alt="love" width="300" height="300"> <!-- Adjusted image size -->
 <p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Images: 12</p>
 <button id="startButton">Start quiz</button>
 </div>
-<div id="game">
+<div id="game" style="display: none;"> <!-- Adjusted display property -->
 <img id="songImage" src=""/>
 <div id="songName" style="display: none;"></div>
 <div id="spotifyPlayer"></div>
@@ -105,15 +108,15 @@
 <p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
 </div>
 <script>
-        const canvas = document.getElementById('background-canvas');
-        const ctx = canvas.getContext('2d');
-        let particlesArray;
+    const canvas = document.getElementById('background-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
     
-        // get size of window
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    // get size of window
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     
-        class Particle {
+    class Particle {
         constructor(x, y, size, speed) {
             this.x = x;
             this.y = y;
@@ -173,75 +176,75 @@
     // call init() and animateParticles() to start the animation
     init();
     animateParticles();
-    </script>
+</script>
 <script>
-        function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
     }
-}
-        var songs = [
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            {name: 'Bleeding love', image: 'https://cdn.midjourney.com/75630c52-5a34-4993-940a-3ba890e38345/0_2.webp', spotifyId: '6LtPIXlIzPOTF8vTecYjRe'},
-            {name: 'Good 4 u', image: 'https://cdn.midjourney.com/df056faa-d346-462f-9fe2-cdc46f3c4e73/0_0.webp', spotifyId: '4ZtFanR9U6ndgddUvNcjcG'},
-            {name: 'Love yourself', image: 'https://cdn.midjourney.com/2424bca5-5a24-4a11-914c-25d9546330a2/0_2.webp', spotifyId: '50kpGaPAhYJ3sGmk6vplg0'},
-            {name: 'Halo', image: 'https://cdn.midjourney.com/30ea5e51-a5bb-492c-93ad-62a64c9d1cd5/0_3.webp', spotifyId: '2CvOqDpQIMw69cCzWqr5yr'},
-            {name: 'Gotta go my own way', image: 'https://cdn.midjourney.com/6635029e-31b5-4917-a557-6e7362e92dfc/0_2.webp', spotifyId: '5rWIO1uP0GwAoU45RTBJ2F'},
-            {name: 'Love story', image: 'https://cdn.midjourney.com/393d23aa-3daf-43a9-813c-71faceee0f1c/0_2.webp', spotifyId: '1D4PL9B8gOg78jiHg3FvBb'},
-            {name: 'Break your heart', image: 'https://cdn.midjourney.com/977e5b68-9615-4733-bba3-0f216f569585/0_2.webp', spotifyId: '7ElF5zxOwYP4qVSWVvse3W'},
-            {name: 'Riding solo', image: 'https://cdn.midjourney.com/d6dd9f3b-0c86-40fb-8c5a-165ec69ed295/0_2.webp', spotifyId: '6OEolOOk9Gh9bqkdpfIOl0'},
-            {name: 'Shape of you', image: 'https://cdn.midjourney.com/e70572fb-f9ff-4142-8413-c7fe21106ca9/0_0.webp', spotifyId: '7qiZfU4dY1lWllzX7mPBI3'},
-            {name: 'Crazy in love', image: 'https://cdn.midjourney.com/1e31b7b1-605f-4080-9d6f-ba59de80c880/0_2.webp', spotifyId: '5IVuqXILoxVWvWEPm82Jxr'},
-            {name: 'We are never ever getting back together', image: 'https://cdn.midjourney.com/474aa880-a1e2-4374-b3a4-19959018fe4c/0_0.webp', spotifyId: '5YqltLsjdqFtvqE7Nrysvs'},
-            {name: 'Shower', image: 'https://cdn.midjourney.com/cfcc4fcf-50aa-4ac3-b189-240db0a390f6/0_1.webp', spotifyId: '3DmW6y7wTEYHJZlLo1r6XJ'},
-        ];
+    
+    var songs = [
+        {name: 'Placeholder', image: '', spotifyId: ''},
+        {name: 'Bleeding love', image: 'https://cdn.midjourney.com/75630c52-5a34-4993-940a-3ba890e38345/0_2.webp', spotifyId: '6LtPIXlIzPOTF8vTecYjRe'},
+        {name: 'Good 4 u', image: 'https://cdn.midjourney.com/df056faa-d346-462f-9fe2-cdc46f3c4e73/0_0.webp', spotifyId: '4ZtFanR9U6ndgddUvNcjcG'},
+        {name: 'Love yourself', image: 'https://cdn.midjourney.com/2424bca5-5a24-4a11-914c-25d9546330a2/0_2.webp', spotifyId: '50kpGaPAhYJ3sGmk6vplg0'},
+        {name: 'Halo', image: 'https://cdn.midjourney.com/30ea5e51-a5bb-492c-93ad-62a64c9d1cd5/0_3.webp', spotifyId: '2CvOqDpQIMw69cCzWqr5yr'},
+        {name: 'Gotta go my own way', image: 'https://cdn.midjourney.com/6635029e-31b5-4917-a557-6e7362e92dfc/0_2.webp', spotifyId: '5rWIO1uP0GwAoU45RTBJ2F'},
+        {name: 'Love story', image: 'https://cdn.midjourney.com/393d23aa-3daf-43a9-813c-71faceee0f1c/0_2.webp', spotifyId: '1D4PL9B8gOg78jiHg3FvBb'},
+        {name: 'Break your heart', image: 'https://cdn.midjourney.com/977e5b68-9615-4733-bba3-0f216f569585/0_2.webp', spotifyId: '7ElF5zxOwYP4qVSWVvse3W'},
+        {name: 'Riding solo', image: 'https://cdn.midjourney.com/d6dd9f3b-0c86-40fb-8c5a-165ec69ed295/0_2.webp', spotifyId: '6OEolOOk9Gh9bqkdpfIOl0'},
+        {name: 'Shape of you', image: 'https://cdn.midjourney.com/e70572fb-f9ff-4142-8413-c7fe21106ca9/0_0.webp', spotifyId: '7qiZfU4dY1lWllzX7mPBI3'},
+        {name: 'Crazy in love', image: 'https://cdn.midjourney.com/1e31b7b1-605f-4080-9d6f-ba59de80c880/0_2.webp', spotifyId: '5IVuqXILoxVWvWEPm82Jxr'},
+        {name: 'We are never ever getting back together', image: 'https://cdn.midjourney.com/474aa880-a1e2-4374-b3a4-19959018fe4c/0_0.webp', spotifyId: '5YqltLsjdqFtvqE7Nrysvs'},
+        {name: 'Shower', image: 'https://cdn.midjourney.com/cfcc4fcf-50aa-4ac3-b189-240db0a390f6/0_1.webp', spotifyId: '3DmW6y7wTEYHJZlLo1r6XJ'},
+    ];
 
-                var currentSong = 0;
+    var currentSong = 0;
 
-        function revealAnswer() {
-            document.getElementById('songName').innerTextz = songs[currentSong].name;
-            document.getElementById('songName').style.display = 'block';
-            document.getElementById('revealButton').style.display = 'none';
-            document.getElementById('nextButton').style.display = 'block';
-            
-            var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
-            document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
+    function revealAnswer() {
+        document.getElementById('songName').innerText = songs[currentSong].name; // Fixed typo
+        document.getElementById('songName').style.display = 'block';
+        document.getElementById('revealButton').style.display = 'none';
+        document.getElementById('nextButton').style.display = 'block';
+        
+        var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+        document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
+    }
+
+    function nextSong() {
+        currentSong++;
+        if (currentSong < songs.length) {
+            document.getElementById('songImage').src = songs[currentSong].image;
+            document.getElementById('songName').style.display = 'none';
+            document.getElementById('spotifyPlayer').innerHTML = '';
+            document.getElementById('revealButton').style.display = 'block';
+            document.getElementById('nextButton').style.display = 'none';
+        } else {
+            var noMoreSongsElement = document.getElementById('game');
+            noMoreSongsElement.innerHTML = '';  // Clear existing content
+            var imageElement = document.createElement('img');
+            imageElement.src = 'https://teislebeck.github.io/images/end.png';  // Replace with the path to your image file
+            imageElement.alt = 'No More Songs Image';  // Optional alt text for accessibility
+            imageElement.width = 300;  // Set the width to 300 pixels
+            imageElement.height = 300; // Set the height to 300 pixels
+            imageElement.style.display = 'block'; // Ensure it's a block-level element
+            imageElement.style.margin = 'auto';  // Center the image horizontally
+            noMoreSongsElement.appendChild(imageElement);
         }
+    }
 
-        function nextSong() {
-            currentSong++;
-            if (currentSong < songs.length) {
-                document.getElementById('songImage').src = songs[currentSong].image;
-                document.getElementById('songName').style.display = 'none';
-                document.getElementById('spotifyPlayer').innerHTML = '';
-                document.getElementById('revealButton').style.display = 'block';
-                document.getElementById('nextButton').style.display = 'none';
-            } else {
-                var noMoreSongsElement = document.getElementById('game');
-                noMoreSongsElement.innerHTML = '';  // Clear existing content
-                var imageElement = document.createElement('img');
-                imageElement.src = 'https://teislebeck.github.io/images/end.png';  // Replace with the path to your image file
-                imageElement.alt = 'No More Songs Image';  // Optional alt text for accessibility
-                imageElement.width = 500;  // Set the width to 500 pixels
-                imageElement.height = 500; // Set the height to 500 pixels
-                imageElement.style.display = 'block'; // Ensure it's a block-level element
-                imageElement.style.margin = 'auto';  // Center the image horizontally
-                noMoreSongsElement.appendChild(imageElement);
-            }
-        }
+    document.getElementById('revealButton').onclick = revealAnswer;
+    document.getElementById('nextButton').onclick = nextSong;
 
-        document.getElementById('revealButton').onclick = revealAnswer;
-        document.getElementById('nextButton').onclick = nextSong;
-    </script>
-<script>
-        document.getElementById('startButton').onclick = function() {
+    document.getElementById('startButton').onclick = function() {
         document.getElementById('introPage').style.display = 'none';
         document.getElementById('game').style.display = 'block';
         document.getElementById('songImage').src = songs[currentSong].image;
         document.getElementById('revealButton').style.display = 'block';
         nextSong();
-        };
-    </script>
+    };
+</script>
 </body>
 </html>
