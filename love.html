@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="utf-8"/>
-    <title>Love and heart break 💕</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet"> 
-    <style>
+<meta charset="utf-8"/>
+<title>Love and heart break 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet"> 
+<style>
         body {
             font-family: 'Silkscreen', sans-serif;
             background-color: #1f1f1f;
@@ -16,23 +14,19 @@
             max-width: 600px;
             margin: auto;
             background-color: transparent;
-            padding: 20px;
+            padding: 10px;
             border-radius: 5px;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0);
         }
 
         #songImage {
-            max-width: 90%;
+            max-width: 100%;
             height: auto;
-            margin: auto; /* Center the image horizontally */
         }
 
         #introPage {
             font-family: 'Silkscreen', sans-serif;    
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         #songName {
@@ -47,12 +41,12 @@
             background-color: #00fffb;
             color: #201b1b;
             border: none;
-            padding: 9px 18px; /* Adjusted padding */
+            padding: 10px 20px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 15px; /* Adjusted font size */
-            margin: 18px 2px; /* Adjusted margin */
+            font-size: 16px;
+            margin: 20px 2px;
             cursor: pointer;
             border-radius: 5px;
         }
@@ -60,7 +54,6 @@
         button:hover {
             background-color: #00fffb90;
         }
-
         #topLeftButton {
             font-family: 'Silkscreen', sans-serif;    
             position: fixed;
@@ -69,141 +62,123 @@
             background-color: #00fffb;
             color: #201b1b;
             border: none;
-            padding: 9px 18px; /* Adjusted padding */
+            padding: 10px 20px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 15px; /* Adjusted font size */
+            font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
         }
-
+        
         #topLeftButton:hover {
             background-color: #00fffb90;
         }
-
-        #playerContainer {
-            display: flex;
-            align-items: center;
-        }
-
-        #spotifyPlayer {
-            flex: 1; /* Take up remaining space */
-        }
-
-        #nextButton {
-            margin-left: 10px; /* Add some space between player and button */
-        }
-
-        #songYear {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-    </style>
+    
+#songYear {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}</style>
 </head>
-<body>
-    <a href="https://www.soundofai.com" id="topLeftButton" style="font-family: 'Silkscreen', sans-serif;" target="_self">Hjem</a>
-    <canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
-    <canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
-    <div style="text-align: center;">
-        <h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Love and heart break 💕 (2000-Current)</h1>
-    </div>
-    <div id="introPage">
-        <img src="https://cdn.midjourney.com/a5d2f6ec-fac8-44a4-bc5e-42fcce3b4abf/0_1.webp" alt="love" width="500" height="500">
-        <p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Images: 12</p>
-        <button id="startButton">Start quiz</button>
-    </div>
-    <div id="game">
-        <div id="playerContainer">
-            <div id="spotifyPlayer"></div>
-            <button id="nextButton" style="display: none;">Next</button>
-        </div>
-        <img id="songImage" src=""/>
-        <div id="songName" style="display: none;"></div>
-    </div>
-    <div id="introPage">
-        <p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
-    </div>
-
-    <script>
+<a href="https://www.soundofai.com" id="topLeftButton" style="font-family: 'Silkscreen', sans-serif;" target="_self">Hjem</a>
+<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
+<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
+<div style="text-align: center;">
+<h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Love and heart break 💕 (2000-Current)</h1>
+</div>
+<div id="introPage">
+<img src="https://cdn.midjourney.com/a5d2f6ec-fac8-44a4-bc5e-42fcce3b4abf/0_1.webp" alt="love" width="500" height="500">
+<p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Images: 12</p>
+<button id="startButton">Start quiz</button>
+</div>
+<div id="game">
+<img id="songImage" src=""/>
+<div id="songName" style="display: none;"></div>
+<div id="spotifyPlayer"></div>
+<button id="revealButton" style="display: none;">Answer</button>
+<button id="nextButton" style="display: none;">Next</button>
+</div>
+<div id="introPage">
+<p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
+</div>
+<script>
         const canvas = document.getElementById('background-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray;
-
+    
         // get size of window
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
+    
         class Particle {
-            constructor(x, y, size, speed) {
-                this.x = x;
-                this.y = y;
-                this.size = size;
-                this.speed = speed;
-            }
-
-            // method to draw individual particle
-            draw() {
-                ctx.fillStyle = 'rgba(173, 216, 230, 0.8)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fill();
-            }
-
-            // update particle movement
-            update() {
-                this.x += this.speed;
-                if (this.x > canvas.width) {
-                    this.x = 0 - this.size;
-                    this.y = Math.random() * canvas.height;
-                }
-                this.draw();
-            }
+        constructor(x, y, size, speed) {
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.speed = speed;
         }
 
-        // create particle array
-        function init() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 30000;
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = Math.random() * 5 + 1;
-                let x = Math.random() * canvas.width;
-                let y = Math.random() * canvas.height;
-                let speed = Math.random() * 3 + 1;
-                particlesArray.push(new Particle(x, y, size, speed));
-            }
+        // method to draw individual particle
+        draw() {
+            ctx.fillStyle = 'rgba(173, 216, 230, 0.8)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
         }
 
-        // animate particles
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
+        // update particle movement
+        update() {
+            this.x += this.speed;
+            if (this.x > canvas.width) {
+                this.x = 0 - this.size;
+                this.y = Math.random() * canvas.height;
             }
-            requestAnimationFrame(animateParticles);
+            this.draw();
         }
+    }
 
-        // reinitialize canvas on window resize
-        window.addEventListener('resize', function () {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            init();
-        });
+    // create particle array
+    function init() {
+        particlesArray = [];
+        let numberOfParticles = (canvas.height * canvas.width) / 30000;
+        for (let i = 0; i < numberOfParticles; i++) {
+            let size = Math.random() * 5 + 1;
+            let x = Math.random() * canvas.width;
+            let y = Math.random() * canvas.height;
+            let speed = Math.random() * 3 + 1;
+            particlesArray.push(new Particle(x, y, size, speed));
+        }
+    }
 
-        // call init() and animateParticles() to start the animation
+    // animate particles
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+        }
+        requestAnimationFrame(animateParticles);
+    }
+
+    // reinitialize canvas on window resize
+    window.addEventListener('resize', function () {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         init();
-        animateParticles();
-    </script>
-    <script>
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                let j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
+    });
 
+    // call init() and animateParticles() to start the animation
+    init();
+    animateParticles();
+    </script>
+<script>
+        function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
         var songs = [
             {name: 'Placeholder', image: '', spotifyId: ''},
             {name: 'Bleeding love', image: 'https://cdn.midjourney.com/75630c52-5a34-4993-940a-3ba890e38345/0_2.webp', spotifyId: '6LtPIXlIzPOTF8vTecYjRe'},
@@ -220,14 +195,14 @@
             {name: 'Shower', image: 'https://cdn.midjourney.com/cfcc4fcf-50aa-4ac3-b189-240db0a390f6/0_1.webp', spotifyId: '3DmW6y7wTEYHJZlLo1r6XJ'},
         ];
 
-        var currentSong = 0;
+                var currentSong = 0;
 
         function revealAnswer() {
-            document.getElementById('songName').innerText = songs[currentSong].name;
+            document.getElementById('songName').innerTextz = songs[currentSong].name;
             document.getElementById('songName').style.display = 'block';
             document.getElementById('revealButton').style.display = 'none';
             document.getElementById('nextButton').style.display = 'block';
-
+            
             var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
             document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
         }
@@ -256,84 +231,15 @@
 
         document.getElementById('revealButton').onclick = revealAnswer;
         document.getElementById('nextButton').onclick = nextSong;
-
-        document.getElementById('startButton').onclick = function() {
-            document.getElementById('introPage').style.display = 'none';
-            document.getElementById('game').style.display = 'block';
-            document.getElementById('songImage').src = songs[currentSong].image;
-            document.getElementById('revealButton').style.display = 'block';
-            nextSong();
-        };
     </script>
-    <script>
-        const canvas = document.getElementById('background-canvas');
-        const ctx = canvas.getContext('2d');
-        let particlesArray;
-
-        // get size of window
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        class Particle {
-            constructor(x, y, size, speed) {
-                this.x = x;
-                this.y = y;
-                this.size = size;
-                this.speed = speed;
-            }
-
-            // method to draw individual particle
-            draw() {
-                ctx.fillStyle = 'rgba(173, 216, 230, 0.8)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fill();
-            }
-
-            // update particle movement
-            update() {
-                this.x += this.speed;
-                if (this.x > canvas.width) {
-                    this.x = 0 - this.size;
-                    this.y = Math.random() * canvas.height;
-                }
-                this.draw();
-            }
-        }
-
-        // create particle array
-        function init() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 30000;
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = Math.random() * 5 + 1;
-                let x = Math.random() * canvas.width;
-                let y = Math.random() * canvas.height;
-                let speed = Math.random() * 3 + 1;
-                particlesArray.push(new Particle(x, y, size, speed));
-            }
-        }
-
-        // animate particles
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        // reinitialize canvas on window resize
-        window.addEventListener('resize', function () {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            init();
-        });
-
-        // call init() and animateParticles() to start the animation
-        init();
-        animateParticles();
+<script>
+        document.getElementById('startButton').onclick = function() {
+        document.getElementById('introPage').style.display = 'none';
+        document.getElementById('game').style.display = 'block';
+        document.getElementById('songImage').src = songs[currentSong].image;
+        document.getElementById('revealButton').style.display = 'block';
+        nextSong();
+        };
     </script>
 </body>
 </html>
