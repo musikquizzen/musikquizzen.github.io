@@ -98,11 +98,11 @@
 <a href="https://www.soundofai.com/" id="topLeftButton" style="font-family: 'Silkscreen', sans-serif;" target="_self">Home</a>
 <canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
 <div style="text-align: center;">
-    <h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">I'm in my ___ era </h1>
+    <h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">The eras tour</h1>
 </div>
 <div id="introPage">
     <img src="https://cdn.midjourney.com/370b72b0-c87f-4571-82be-17ac4039a5a7/0_3.png" alt="love" width="500" height="500">
-    <p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">All your favorite Taylor Swift songs from different eras</p>
+    <p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">The ultimate AI musical quiz for Swifties. Each image has been generated based off the song name or a particular lyric in that song.</p>
     <button id="startButton">Start the quiz</button>
 </div>
 <div id="game" style="display: none;">
@@ -188,19 +188,19 @@
     }
 
     var songs = [
-        {name: 'Fearless - 2008', image: 'https://cdn.midjourney.com/271c6862-ff64-4f17-9cc8-712c18358d7f/0_1.png', spotifyId: ''}, //Love story
-        {name: 'Fearless - 2008', image: 'https://cdn.midjourney.com/17954b38-e906-4aff-82ad-90351835df6b/0_1.png', spotifyId: ''}, //You belong with me
-        {name: 'Red - 2012', image: 'https://cdn.midjourney.com/d0acff73-8e13-4326-900c-3e85c9173b2b/0_2.png', spotifyId: ''}, //We are never ever getting back together
-        {name: 'Red - 2012', image: 'https://cdn.midjourney.com/58846d34-7803-43f8-a9f0-64945480952f/0_2.png', spotifyId: ''}, // I knew you were trouble
-        {name: 'Midnights - 2022', image: 'https://cdn.midjourney.com/9665e3fd-a093-4d1c-a386-22c86685c33c/0_2.png', spotifyId: ''}, //Anti-Hero
-        {name: 'Lover - 2019', image: 'https://cdn.midjourney.com/2dfd055e-f17d-4853-b551-5459c08fa320/0_0.png', spotifyId: ''}, //Cruel summer
-        {name: 'The tortured poets department - 2024', image: 'https://cdn.midjourney.com/372127ac-d1f1-4893-b6b4-65f8cf77c3de/0_2.png', spotifyId: ''}, // Fortnight
-        {name: 'The tortured poets department - 2024', image: 'https://cdn.midjourney.com/f528cb1b-a002-4530-88e9-d3677913279d/0_1.png', spotifyId: ''}, // I can do it with a broken heart
-        {name: 'Folklore - 2020', image: 'https://cdn.midjourney.com/505bf579-ecfe-409c-9f5e-c13056a16da1/0_1.png', spotifyId: ''}, //august
-        {name: '', image: 'https://cdn.midjourney.com/75b99e4f-e7e5-47d0-8413-49271e2b0d3e/0_0.png', spotifyId: ''}, //Style
-        {name: '', image: 'https://cdn.midjourney.com/bd2e86d3-8619-4a23-a462-5a405a9171c6/0_0.png', spotifyId: ''}, //Fearless (the song)
-        {name: '', image: 'https://cdn.midjourney.com/4ce4001a-1dad-4c26-a30c-bea0c2b85b4d/0_1.png', spotifyId: ''}, //Shake it off
-        {name: '', image: 'https://cdn.midjourney.com/92cafa85-18cc-4cf7-83c1-e876ce620070/0_1.png', spotifyId: ''}, //Blank space
+        {name: 'Fearless - 2008', image: 'https://cdn.midjourney.com/271c6862-ff64-4f17-9cc8-712c18358d7f/0_1.png', spotifyId: '6YvqWjhGD8mB5QXcbcUKtx'}, //Love story
+        {name: 'Fearless - 2008', image: 'https://cdn.midjourney.com/17954b38-e906-4aff-82ad-90351835df6b/0_1.png', spotifyId: '1qrpoAMXodY6895hGKoUpA'}, //You belong with me
+        {name: 'Red - 2012', image: 'https://cdn.midjourney.com/d0acff73-8e13-4326-900c-3e85c9173b2b/0_2.png', spotifyId: '5YqltLsjdqFtvqE7Nrysvs'}, //We are never ever getting back together
+        {name: 'Red - 2012', image: 'https://cdn.midjourney.com/58846d34-7803-43f8-a9f0-64945480952f/0_2.png', spotifyId: '6AtZLIzUINvExIUy4QhdjP'}, // I knew you were trouble
+        {name: 'Midnights - 2022', image: 'https://cdn.midjourney.com/9665e3fd-a093-4d1c-a386-22c86685c33c/0_2.png', spotifyId: '0V3wPSX9ygBnCm8psDIegu'}, //Anti-Hero
+        {name: 'Lover - 2019', image: 'https://cdn.midjourney.com/2dfd055e-f17d-4853-b551-5459c08fa320/0_0.png', spotifyId: '1BxfuPKGuaTgP7aM0Bbdwr'}, //Cruel summer
+        {name: 'The tortured poets department - 2024', image: 'https://cdn.midjourney.com/372127ac-d1f1-4893-b6b4-65f8cf77c3de/0_2.png', spotifyId: '2OzhQlSqBEmt7hmkYxfT6m'}, // Fortnight
+        {name: 'The tortured poets department - 2024', image: 'https://cdn.midjourney.com/f528cb1b-a002-4530-88e9-d3677913279d/0_1.png', spotifyId: '4q5YezDOIPcoLr8R81x9qy'}, // I can do it with a broken heart
+        {name: 'Folklore - 2020', image: 'https://cdn.midjourney.com/505bf579-ecfe-409c-9f5e-c13056a16da1/0_1.png', spotifyId: '3hUxzQpSfdDqwM3ZTFQY0K'}, //august
+        {name: '1989 - 2014', image: 'https://cdn.midjourney.com/75b99e4f-e7e5-47d0-8413-49271e2b0d3e/0_0.png', spotifyId: '1hjRhYpWyqDpPahmSlUTlc'}, //Style
+        {name: 'Fearless - 2008', image: 'https://cdn.midjourney.com/bd2e86d3-8619-4a23-a462-5a405a9171c6/0_0.png', spotifyId: '77sMIMlNaSURUAXq5coCxE'}, //Fearless (the song)
+        {name: '1989 - 2014', image: 'https://cdn.midjourney.com/4ce4001a-1dad-4c26-a30c-bea0c2b85b4d/0_1.png', spotifyId: '3pv7Q5v2dpdefwdWIvE7yH'}, //Shake it off
+        {name: '', image: 'https://cdn.midjourney.com/92cafa85-18cc-4cf7-83c1-e876ce620070/0_1.png', spotifyId: '45wMBGri1PORPjM9PwFfrS'}, //Blank space
         {name: '', image: '', spotifyId: ''}, //template
 
     ];
