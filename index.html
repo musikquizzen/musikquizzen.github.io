@@ -4,16 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sound of A.I. 🤖</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet">
+    <title>Sound of AI 🤖</title>
     <style>
+        @font-face {
+            font-family: 'Regular';
+            src: url('coolvetica_it.otf') format('opentype');
+        }
+        @font-face {
+            font-family: 'Black';
+            src: url('Black.ttf') format('truetype');
+        }
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Regular', sans-serif;
             margin: 0;
             background-color: #1f1f1f;
-            /* Dark gray background */
             color: #ffffff;
-            /* White text */
         }
 
         #background-canvas {
@@ -30,11 +35,9 @@
             padding: 20px;
             text-align: center;
             background-color: rgba(0, 0, 0, 0.0);
-            /* Slightly transparent black background */
             border-radius: 5px;
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0);
             margin: 50px auto;
-            /* Updated margin for better positioning */
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-gap: 20px;
@@ -45,7 +48,6 @@
             font-weight: bold;
             margin-bottom: 20px;
             color: #ffcc00;
-            /* Yellow text */
             text-align: center;
         }
 
@@ -67,9 +69,9 @@
         }
 
         #introPage {
-        text-align: center;
-        margin-top: 20px; /* Adjust the margin-top as needed */
-    }
+            text-align: center;
+            margin-top: 20px;
+        }
 
         .image-title {
             position: relative;
@@ -77,97 +79,155 @@
             left: 0;
             width: 100%;
             background-color: rgba(0, 0, 0, 0);
-            /* Slightly transparent black background */
             padding: 10px;
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
             font-size: 14px;
             color: #ffffff;
-            /* White text */
-            font-family: 'Silkscreen', sans-serif;
+            font-family: 'Black', sans-serif;
         }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #2c2c2c;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            color: #ffffff;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #ff0000;
+            text-decoration: none;
+        }
+
+        .update-button {
+            background-color: #ffcc00;
+            font-family: 'Black', sans-serif; 
+            color: #000;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px auto;
+            display: block;
+        }
+
+        .update-button:hover {
+            background-color: #b49102;
+        }
+        ul li {
+        margin-bottom: 10px; /* Adjust the value as needed */
+    }
     </style>
 </head>
 
 <body>
     <canvas id="background-canvas"></canvas>
-    <h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">A.I. Musikquiz</h1>
+    <h1 style="font-family: 'Black', sans-serif; color: #00fffb;">Sound of AI</h1>
 
-    <!-- Updated structure for better scrolling -->
+    <!-- Update Button -->
+    <button class="update-button" id="showUpdates">See updates</button>
+
+    <!-- Modal for Updates -->
+    <div id="updatesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>December 2024 update</h2>
+            <p>Sound of AI has gotten some <strong>new features</strong>! These include:</p>
+            <ul>
+                <li>
+                    Added <strong>hints</strong> for each image. Just press and hold <span style="color: #ffcc00;">space</span> to get the hint.
+                </li>
+                <li>
+                    Added the <strong>release year</strong> of the song. This is displayed under the image.
+                </li>
+                <li>Added <strong>new songs</strong> to current categories.</li>
+                <li><strong>Remastered images</strong> of current songs.</li>
+        </div>
+    </div>
+
+    <!-- Content Container -->
     <div id="content-container">
         <div id="quiz-container">
             <div class="quiz-item">
-                <a href="https://www.soundofai.com/swifties.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/370b72b0-c87f-4571-82be-17ac4039a5a7/0_3.png" alt="The eras tour"></a>
-                <div class="image-title">The eras tour 🪩</div>
-            </div>
-            <div class="quiz-item">
                 <a href="https://www.soundofai.com/dance.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/17e934b1-7865-4ed8-b835-6c32f3039bbe/0_1.png" alt="Dance"></a>
-                <div class="image-title">"Dance" eller "Party" i titlen 🥳💃</div>
+                        src="https://cdn.midjourney.com/24e78b51-acb9-4aaa-b93b-8a5f9f2af534/0_3.png" alt="dance"></a>
+                <div class="image-title">Dance party 🥳💃</div>
             </div>
             <div class="quiz-item">
                 <a href="https://www.soundofai.com/love.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/a5d2f6ec-fac8-44a4-bc5e-42fcce3b4abf/0_1.webp" alt="Love"></a>
-                <div class="image-title">Ægte og ulykkelig kærlighed 💕</div>
-            </div>
-            <div class="quiz-item">
-                <a href="https://www.soundofai.com/disney.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/1bc0ed2d-5506-4c77-baa6-d74c5d0515ac/0_0.webp" alt="Disney"></a>
-                <div class="image-title">Disney</div>
+                        src="https://cdn.midjourney.com/72678534-7149-4c5e-b62a-b9778c872f8b/0_3.png" alt="love"></a>
+                <div class="image-title">Love hurts, love heals 💕</div>
             </div>
             <div class="quiz-item">
                 <a href="https://www.soundofai.com/denmark_v2.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/dc237477-6c5a-47d7-b002-c0c8080dc947/0_2.webp" alt="Danske bangers - vol. 2"></a>
+                        src="https://cdn.midjourney.com/8574071d-c0c3-41b8-8efa-d0b5d8fd2e21/0_3.png" alt="Danske bangers_v2"></a>
                 <div class="image-title">Danske bangers 🇩🇰 - Vol. 2</div>
             </div>
             <div class="quiz-item">
                 <a href="https://www.soundofai.com/denmark.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/5d3a8a49-1b41-4402-9f7d-20e31e250863/0_2.webp" alt="Danske bangers"></a>
-                <div class="image-title">Danske bangers 🇩🇰</div>
-            </div>
-            <div class="quiz-item">
-                <a href="https://www.soundofai.com/2023.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/210cb6c2-5aaa-45f4-a04d-eecfd928dd28/0_1.webp" alt="Best of 2023"></a>
-                <div class="image-title">Best of 2023</div>
+                        src="https://cdn.midjourney.com/acdacfc8-d21a-4d7a-9d16-2565efaf591c/0_2.png" alt="Danske bangers"></a>
+                <div class="image-title">Danske bangers - Vol. 1🇩🇰</div>
             </div>
             <div class="quiz-item">
                 <a href="https://www.soundofai.com/2010s.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/662f931c-34f1-4e26-9414-a01364e7a8cd/0_2.webp" alt="20102"></a>
-                <div class="image-title">2010's</div>
+                        src="https://cdn.midjourney.com/662f931c-34f1-4e26-9414-a01364e7a8cd/0_2.webp" alt="2010s"></a>
+                <div class="image-title">2010s</div>
             </div>
             <div class="quiz-item">
                 <a href="https://www.soundofai.com/2000s.html" target="_self"><img class="quiz-image"
                         src="https://cdn.midjourney.com/0a555ad5-79e5-42db-8153-33f1b6587054/0_2.webp" alt="2000s"></a>
-                <div class="image-title">2000's</div>
+                <div class="image-title">2000s</div>
             </div>
             <div class="quiz-item">
                 <a href="https://www.soundofai.com/1990s.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/03afb2af-0717-405a-9763-593d09528d2d/0_0.webp" alt="1990s"></a>
-                <div class="image-title">1990's</div>
+                        src="https://cdn.midjourney.com/d3dd344f-5ba0-4d33-b2b0-7dcc084db54e/0_0.png" alt="1990s"></a>
+                <div class="image-title">1990s</div>
             </div>
             <div class="quiz-item">
                 <a href="https://www.soundofai.com/1980s.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/65ea3508-5f4d-4d19-aacc-1174818b1795/0_1.webp" alt="1980s"></a>
-                <div class="image-title">1980's</div>
+                        src="https://cdn.midjourney.com/23fe1fd0-f39f-44d9-8c7e-2af434208576/0_2.png" alt="1980s"></a>
+                <div class="image-title">1980s</div>
             </div>
             <div class="quiz-item">
                 <a href="https://www.soundofai.com/1970s.html" target="_self"><img class="quiz-image"
-                        src="https://cdn.midjourney.com/1be743f4-9271-4844-8746-df484151bbf5/0_1.webp" alt="1970s"></a>
-                <div class="image-title">1970's</div>
+                        src="https://cdn.midjourney.com/45ddafab-c08a-4f27-bf2b-7108e3eab1ed/0_2.png" alt="1970s"></a>
+                <div class="image-title">1970s</div>
             </div>
             <!-- Add more quiz items as needed -->
         </div>
     </div>
 
     <div id="introPage">
-        <!-- <a href="https://www.linkedin.com/in/teis-lebeck/" title="LinkedIn"
-            style="text-decoration: none;"> -->
-            <p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">TIP: Åben quizzen i et privat vindue, hvis du er logget ind på Spotify.</p>
-            <p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
-        </a>
-            <p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Version 1.0</p>
-            <p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">@SOUNDOFAI</p>
+        <p style="font-family: 'Regular', sans-serif; color: #717171; font-size: 10px;">Logged into Spotify in this browser? Open the page in a private window for the best experience with the song previews.</p>
+        <p style="font-family: 'Black', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
     </div>
 
     <script>
@@ -175,7 +235,7 @@
         const ctx = canvas.getContext('2d');
         let particlesArray;
 
-        // get size of window
+        // Canvas setup
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
@@ -187,7 +247,6 @@
                 this.speed = speed;
             }
 
-            // method to draw individual particle
             draw() {
                 ctx.fillStyle = 'rgba(173, 216, 230, 0.8)';
                 ctx.beginPath();
@@ -196,7 +255,6 @@
                 ctx.fill();
             }
 
-            // update particle movement
             update() {
                 this.x += this.speed;
                 if (this.x > canvas.width) {
@@ -207,7 +265,6 @@
             }
         }
 
-        // create particle array
         function init() {
             particlesArray = [];
             let numberOfParticles = (canvas.height * canvas.width) / 30000;
@@ -220,7 +277,6 @@
             }
         }
 
-        // animate particles
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < particlesArray.length; i++) {
@@ -229,16 +285,33 @@
             requestAnimationFrame(animateParticles);
         }
 
-        // reinitialize canvas on window resize
         window.addEventListener('resize', function () {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             init();
         });
 
-        // call init() and animateParticles() to start the animation
         init();
         animateParticles();
+
+        // Modal logic
+        const modal = document.getElementById('updatesModal');
+        const showModalButton = document.getElementById('showUpdates');
+        const closeModalButton = document.getElementById('closeModal');
+
+        showModalButton.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
     </script>
 </body>
 

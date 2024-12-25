@@ -1,45 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/>
-<title>Danske Bangers - vol. 2</title>
-<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet"> 
-<style>
+    <meta charset="utf-8"/>
+    <title>Danske bangers - vol. 2</title>
+    <style>
+        @font-face {
+            font-family: 'Regular';
+            src: url('coolvetica_it.otf') format('opentype');
+        }
+        @font-face {
+            font-family: 'Black';
+            src: url('Black.ttf') format('truetype');
+        }
         body {
-            font-family: 'Silkscreen', sans-serif;
+            font-family: 'Black', sans-serif;
             background-color: #1f1f1f;
-            padding: 10px;
+            padding: 2px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #game {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;   
             max-width: 600px;
             margin: auto;
             background-color: transparent;
-            padding: 10px;
+            padding: 20px;
             border-radius: 5px;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #songImage {
-            max-width: 100%;
+            width: 85%;;
             height: auto;
-        }
-
-        #introPage {
-            font-family: 'Silkscreen', sans-serif;    
-            text-align: center;
+            align-items: center;
+        
         }
 
         #songName {
-            font-family: 'Silkscreen', sans-serif;    
-            font-size: 24px;
+            font-family: 'Black', sans-serif;
+            font-size: 50px; /* Larger font size */
+            color: #00fffb; /* Blue color */
             font-weight: bold;
             margin-top: 20px;
+            display: block;
+        }
+
+        #hintOverlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #hintText {
+            font-family: 'Regular', sans-serif;
+            font-size: 34px;
+            color: #ffcc00;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0 auto;
         }
 
         button {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;    
             background-color: #00fffb;
             color: #201b1b;
             border: none;
@@ -56,8 +91,9 @@
         button:hover {
             background-color: #00fffb90;
         }
+
         #topLeftButton {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;    
             position: fixed;
             top: 10px;
             left: 10px;
@@ -72,48 +108,52 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        
+
         #topLeftButton:hover {
             background-color: #00fffb90;
         }
-    
-#songYear {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-}</style>
+
+        #songYear {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-<a href="https://www.soundofai.com" id="topLeftButton" style="font-family: 'Silkscreen', sans-serif;" target="_self">Hjem</a>
-<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
+<body>
+<a href="https://www.soundofai.com/" id="topLeftButton" style="font-family: 'Black', sans-serif;" target="_self">Home</a>
 <canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
 <div style="text-align: center;">
-<h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Danske bangers  🇩🇰 - VOL. 2</h1>
+    <h1 style="font-family: 'Black', sans-serif; color: #00fffb;">Danske bangers - vol. 2</h1>
 </div>
 <div id="introPage">
-<img src="https://cdn.midjourney.com/dc237477-6c5a-47d7-b002-c0c8080dc947/0_2.webp" alt="2010s" width="500" height="500">
-<p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Antal billeder: 20</p>
-<button id="startButton">Start quizzen</button>
+    <img src="https://cdn.midjourney.com/8574071d-c0c3-41b8-8efa-d0b5d8fd2e21/0_3.png" alt="dk_vol2" width="500" height="500">
+    <p style="font-family: 'Black', sans-serif; color: #00fffb; padding-top: 5px;">Endnu en omgang af de bedste danske bangers!</p>
+    <button id="startButton">Start</button>
 </div>
-<div id="game">
-<img id="songImage" src=""/>
-<div id="songName" style="display: none;"></div>
-<div id="spotifyPlayer"></div>
-<button id="revealButton" style="display: none;">Se svaret</button>
-<button id="nextButton" style="display: none;">Næste billede</button>
+<div id="game" style="display: none;">
+    <img id="songImage" src=""/>
+    <div id="songName"></div>
+    <div id="spotifyPlayer"></div>
+    <button id="revealButton" style="display: none;">Reveal answer</button>
+    <button id="nextButton" style="display: none;">Next image</button>
+</div>
+<div id="hintOverlay">
+    <div id="hintText"></div>
 </div>
 <div id="introPage">
-<p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
+    <p style="font-family: 'Black', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
 </div>
 <script>
-        const canvas = document.getElementById('background-canvas');
-        const ctx = canvas.getContext('2d');
-        let particlesArray;
-    
-        // get size of window
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    
-        class Particle {
+    const canvas = document.getElementById('background-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    // get size of window
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
         constructor(x, y, size, speed) {
             this.x = x;
             this.y = y;
@@ -121,7 +161,6 @@
             this.speed = speed;
         }
 
-        // method to draw individual particle
         draw() {
             ctx.fillStyle = 'rgba(173, 216, 230, 0.8)';
             ctx.beginPath();
@@ -130,7 +169,6 @@
             ctx.fill();
         }
 
-        // update particle movement
         update() {
             this.x += this.speed;
             if (this.x > canvas.width) {
@@ -141,7 +179,6 @@
         }
     }
 
-    // create particle array
     function init() {
         particlesArray = [];
         let numberOfParticles = (canvas.height * canvas.width) / 30000;
@@ -154,7 +191,6 @@
         }
     }
 
-    // animate particles
     function animateParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < particlesArray.length; i++) {
@@ -163,93 +199,112 @@
         requestAnimationFrame(animateParticles);
     }
 
-    // reinitialize canvas on window resize
     window.addEventListener('resize', function () {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         init();
     });
 
-    // call init() and animateParticles() to start the animation
     init();
     animateParticles();
-    </script>
+</script>
 <script>
-        function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
     }
-}
-        var songs = [
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            {name: 'Danse i måneskin', image: 'https://cdn.midjourney.com/23b186c4-47af-42e8-920d-a3b2a284385c/0_2.webp', spotifyId: '47f5VH4gBRdqkMtFctiveF'},
-            {name: 'Gutterne', image: 'https://cdn.midjourney.com/86c791b3-c3f5-4284-a7e1-96f5d52adf86/0_1.webp', spotifyId: '4xTlom5tmNmAvQ1FCgtfyM'},
-            {name: 'Mucki bar', image: 'https://cdn.midjourney.com/638d53a4-9746-4676-961a-ba5d8152e178/0_3.webp', spotifyId: '4XhW9iOypxiiNyIMpirPFv'},
-            {name: 'Blå himmel', image: 'https://cdn.midjourney.com/418a16b8-0b0b-4646-8da9-57097451074a/0_0.webp', spotifyId: '0qA2qykpcGdVl3tiiYum4g'},
-            {name: 'Bonsoir Madame', image: 'https://cdn.midjourney.com/4086a689-0ae7-42ca-b5e8-e77b373ecb21/0_1.webp', spotifyId: '1bogz3k48T3WwtErpk87wB'},
-            {name: 'Gulddans', image: 'https://cdn.midjourney.com/b591a7b5-ed2d-4af4-ab5f-70a6decd3e9b/0_1.webp', spotifyId: '7z1L6Edc4sN0WtA8HXH9iJ'},
-            {name: 'Hurtige hænder', image: 'https://cdn.midjourney.com/6f35b9df-5d24-4fad-9a1d-95d519e8ad9d/0_1.webp', spotifyId: '1QBfz0sWrMPrpvxjBPU5Jg'},
-            {name: 'Feberdrømme Xx Dubai', image: 'https://cdn.midjourney.com/96edb402-65cd-4896-a23e-1c3d7cfce8d5/0_3.webp', spotifyId: '22fNmvVD1bC4rWv6hg29pC'},
-            {name: 'Sydpå', image: 'https://cdn.midjourney.com/f61a08de-f714-4537-90ff-3a88c9028483/0_3.webp', spotifyId: '1lahfyqBPVvBIxf3XgmQmZ'},
-            {name: 'Solkongen', image: 'https://cdn.midjourney.com/120bcc94-7baf-464b-9c32-ae31782e36a6/0_1.webp', spotifyId: '35C2waltlc5ymcJuBayTDg'},
-            {name: 'Police Bells & Church Sirens', image: 'https://cdn.midjourney.com/62268536-670b-4dae-bedc-d38ec6f15fba/0_0.webp', spotifyId: '0LLRvWfXAmV7BlFySw5N9i'},
-            {name: 'Allerede is', image: 'https://cdn.midjourney.com/1eba08d1-3cae-4aa7-87bd-97bd5a92f645/0_1.webp', spotifyId: '7kQ5USXOqajlefGbavFfCe'},
-            {name: 'De første kærester på månen', image: 'https://cdn.midjourney.com/350b9286-2529-4fc6-97c7-5c8b109833af/0_2.webp', spotifyId: '1RGL48ceSL1dAgzCgmZTdj'},
-            {name: 'Valby bakke', image: 'https://cdn.midjourney.com/80bfd55b-9612-4c92-b556-f62c10005bad/0_3.webp', spotifyId: '35mxhmxJen5eRB0bkCJkrT'},
-            {name: 'Stein Bagger', image: 'https://cdn.midjourney.com/2f7c281e-f332-4ef3-b297-33b5373de36b/0_3.webp', spotifyId: '5eX78VCIia3G4A6tbdV5n3'},
-            {name: 'KIDD er din far', image: 'https://cdn.midjourney.com/b1a6815b-9128-490c-8101-ca385f6d0272/0_1.webp', spotifyId: '0fEFSHBaLwvxbSrM5HoF5h'},
-            {name: 'Vilde kaniner', image: 'https://cdn.midjourney.com/705a4552-e92a-4473-a091-2464c9b3602f/0_2.webp', spotifyId: '40QBAl5ijcFWV7A2fKjYH5'},
-            {name: 'Drømmer jeg', image: 'https://cdn.midjourney.com/6db616b5-3242-44b7-a673-ec74467e0ede/0_3.webp', spotifyId: '0J3LsonEK3aD0oozS9EBWJ'},
-            {name: 'Fugle', image: 'https://cdn.midjourney.com/277eb6dc-d6aa-44e9-b64a-a273fcdaa50b/0_1.webp', spotifyId: '7qdykONOD1KESBGqyRDSkO'},
-            {name: 'Jeg Vil La Lyset Brænde', image: 'https://cdn.midjourney.com/68c51989-2083-45c6-bac8-b9fee11af8f4/0_3.webp', spotifyId: '1rRcFwE1ydO2Y5jSmk1UIs'},
-            {name: 'Regndans', image: 'https://cdn.midjourney.com/f372703b-85b6-435c-97a8-40de47f7a791/0_0.webp', spotifyId: '0SRegj5vaB5EGrGousGJQ0'},           
-            ]
-                var currentSong = 0;
 
-        function revealAnswer() {
-            document.getElementById('songName').innerTextz = songs[currentSong].name;
-            document.getElementById('songName').style.display = 'block';
-            document.getElementById('revealButton').style.display = 'none';
-            document.getElementById('nextButton').style.display = 'block';
-            
-            var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
-            document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
+    var songs = [
+{year: '1987', image: 'https://cdn.midjourney.com/23b186c4-47af-42e8-920d-a3b2a284385c/0_2.webp', spotifyId: '47f5VH4gBRdqkMtFctiveF', hint: 'Læg mærke til baggrunden'}, // Danse i måneskin
+{year: '2020', image: 'https://cdn.midjourney.com/86c791b3-c3f5-4284-a7e1-96f5d52adf86/0_1.webp', spotifyId: '4xTlom5tmNmAvQ1FCgtfyM', hint: 'Et andet udtryk for en gruppe af drengevenner'}, // Gutterne
+{year: '2022', image: 'https://cdn.midjourney.com/638d53a4-9746-4676-961a-ba5d8152e178/0_3.webp', spotifyId: '4XhW9iOypxiiNyIMpirPFv', hint: 'Man arbejder deltid her'}, // Mucki bar
+{year: '2020', image: 'https://cdn.midjourney.com/418a16b8-0b0b-4646-8da9-57097451074a/0_0.webp', spotifyId: '0qA2qykpcGdVl3tiiYum4g', hint: 'Det er meget lille chance for regn'}, // Blå himmel
+{year: '1997', image: 'https://cdn.midjourney.com/4086a689-0ae7-42ca-b5e8-e77b373ecb21/0_1.webp', spotifyId: '1bogz3k48T3WwtErpk87wB', hint: 'Titlen er fransk, men bandet er dansk'}, // Bonsoir Madame
+{year: '2017', image: 'https://cdn.midjourney.com/b591a7b5-ed2d-4af4-ab5f-70a6decd3e9b/0_1.webp', spotifyId: '7z1L6Edc4sN0WtA8HXH9iJ', hint: 'Sangen er lavet som en hyldest til FC København'}, // Gulddans
+{year: '2014', image: 'https://cdn.midjourney.com/6f35b9df-5d24-4fad-9a1d-95d519e8ad9d/0_1.webp', spotifyId: '1QBfz0sWrMPrpvxjBPU5Jg', hint: 'Mange boksere har dette'}, // Hurtige hænder
+{year: '2022', image: 'https://cdn.midjourney.com/96edb402-65cd-4896-a23e-1c3d7cfce8d5/0_3.webp', spotifyId: '22fNmvVD1bC4rWv6hg29pC', hint: '🎵 Drømmer om at være en...🎵'}, // Feberdrømme Xx Dubai
+{year: '2016', image: 'https://cdn.midjourney.com/b1a6815b-9128-490c-8101-ca385f6d0272/0_1.webp', spotifyId: '0fEFSHBaLwvxbSrM5HoF5h', hint: 'Faren skal ligne dén person, som sangen handler om'}, // KIDD er din far
+{year: '2018', image: 'https://cdn.midjourney.com/f61a08de-f714-4537-90ff-3a88c9028483/0_3.webp', spotifyId: '1lahfyqBPVvBIxf3XgmQmZ', hint: 'Mange danskere tager herhen i deres ferier'}, // Sydpå
+{year: '2017', image: 'https://cdn.midjourney.com/120bcc94-7baf-464b-9c32-ae31782e36a6/0_1.webp', spotifyId: '35C2waltlc5ymcJuBayTDg', hint: 'Læg mærke til hans hovedbeklædning'}, // Solkongen
+{year: '2009', image: 'https://cdn.midjourney.com/62268536-670b-4dae-bedc-d38ec6f15fba/0_0.webp', spotifyId: '0LLRvWfXAmV7BlFySw5N9i', hint: 'Engelsk titel, men bandet er dansk'}, // Police Bells & Church Sirens
+{year: '2015', image: 'https://cdn.midjourney.com/1eba08d1-3cae-4aa7-87bd-97bd5a92f645/0_1.webp', spotifyId: '7kQ5USXOqajlefGbavFfCe', hint: '🎵 Du kan ikke fryse mig 🎵'}, // Allerede is
+{year: '2005', image: 'https://cdn.midjourney.com/350b9286-2529-4fc6-97c7-5c8b109833af/0_2.webp', spotifyId: '1RGL48ceSL1dAgzCgmZTdj', hint: 'Bandet deler navn med en fjernsynskanal'}, // De første kærester på månen
+{year: '2004', image: 'https://cdn.midjourney.com/80bfd55b-9612-4c92-b556-f62c10005bad/0_3.webp', spotifyId: '35mxhmxJen5eRB0bkCJkrT', hint: 'Det er et stor ledetråd skrevet et sted på billedet'}, // Valby bakke
+{year: '2014', image: 'https://cdn.midjourney.com/2f7c281e-f332-4ef3-b297-33b5373de36b/0_3.webp', spotifyId: '5eX78VCIia3G4A6tbdV5n3', hint: 'Manden skal ligne dén person, som sangen handler om'}, // Stein Bagger
+{year: '1984', image: 'https://cdn.midjourney.com/705a4552-e92a-4473-a091-2464c9b3602f/0_2.webp', spotifyId: '40QBAl5ijcFWV7A2fKjYH5', hint: '🎵 Med de meget lange ører 🎵'}, // Vilde kaniner
+{year: '2004', image: 'https://cdn.midjourney.com/6db616b5-3242-44b7-a673-ec74467e0ede/0_3.webp', spotifyId: '0J3LsonEK3aD0oozS9EBWJ', hint: 'Læg mærke til hvor han kigger hen'}, // Drømmer jeg
+{year: '2015', image: 'https://cdn.midjourney.com/277eb6dc-d6aa-44e9-b64a-a273fcdaa50b/0_1.webp', spotifyId: '7qdykONOD1KESBGqyRDSkO', hint: '🎵 Hvorfor ik, hvorfor ik 🎵'}, // Fugle
+{year: '1990', image: 'https://cdn.midjourney.com/68c51989-2083-45c6-bac8-b9fee11af8f4/0_3.webp', spotifyId: '1rRcFwE1ydO2Y5jSmk1UIs', hint: 'Der er ikke nogen, der har pustet det ud'}, // Jeg Vil La Lyset Brænde]; 
+
+]; 
+    var currentSong = 0;
+
+    function displaySong() {
+        // Display the image
+        document.getElementById('songImage').src = songs[currentSong].image;
+
+        // Display the song name
+        document.getElementById('songName').innerText = songs[currentSong].year;
+        document.getElementById('songName').style.display = 'block';
+
+        // Reset Spotify Player (hide until "Se svaret" is clicked)
+        document.getElementById('spotifyPlayer').innerHTML = '';
+
+        // Adjust visibility of buttons
+        document.getElementById('revealButton').style.display = 'block';
+        document.getElementById('nextButton').style.display = 'none';
+
+        // Set the hint text
+        document.getElementById('hintText').innerText = songs[currentSong].hint;
+    }
+
+    function revealAnswer() {
+        // Display the Spotify Player
+        var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+        document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
+
+        // Hide the reveal button, show the next button
+        document.getElementById('revealButton').style.display = 'none';
+        document.getElementById('nextButton').style.display = 'block';
+    }
+
+    function nextSong() {
+        currentSong++;
+        if (currentSong >= songs.length) {
+            currentSong = 0; // Loop back to the first song
         }
+        displaySong();
+    }
 
-        function nextSong() {
-            currentSong++;
-            if (currentSong < songs.length) {
-                document.getElementById('songImage').src = songs[currentSong].image;
-                document.getElementById('songName').style.display = 'none';
-                document.getElementById('spotifyPlayer').innerHTML = '';
-                document.getElementById('revealButton').style.display = 'block';
-                document.getElementById('nextButton').style.display = 'none';
-            } else {
-                var noMoreSongsElement = document.getElementById('game');
-                noMoreSongsElement.innerHTML = '';  // Clear existing content
-                var imageElement = document.createElement('img');
-                imageElement.src = 'https://teislebeck.github.io/images/end.png';  // Replace with the path to your image file
-                imageElement.alt = 'No More Songs Image';  // Optional alt text for accessibility
-                imageElement.width = 500;  // Set the width to 500 pixels
-                imageElement.height = 500; // Set the height to 500 pixels
-                imageElement.style.display = 'block'; // Ensure it's a block-level element
-                imageElement.style.margin = 'auto';  // Center the image horizontally
-                noMoreSongsElement.appendChild(imageElement);
-            }
-        }
-
-        document.getElementById('revealButton').onclick = revealAnswer;
-        document.getElementById('nextButton').onclick = nextSong;
-    </script>
-<script>
-        document.getElementById('startButton').onclick = function() {
+    document.getElementById('startButton').onclick = function() {
         document.getElementById('introPage').style.display = 'none';
         document.getElementById('game').style.display = 'block';
-        document.getElementById('songImage').src = songs[currentSong].image;
-        document.getElementById('revealButton').style.display = 'block';
+        displaySong(); // Start with the first song
+    };
+
+    document.getElementById('revealButton').onclick = function() {
+        revealAnswer();
+    };
+
+    document.getElementById('nextButton').onclick = function() {
         nextSong();
-        };
-    </script>
+    };
+
+    // Show hint overlay when "h" key is pressed
+    document.addEventListener('keydown', function(event) {
+        if (event.key === ' ') {
+            document.getElementById('hintOverlay').style.display = 'block';
+        }
+    });
+
+    // Hide hint overlay when "h" key is released
+    document.addEventListener('keyup', function(event) {
+        if (event.key === ' ') {
+            document.getElementById('hintOverlay').style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>

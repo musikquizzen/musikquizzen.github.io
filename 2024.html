@@ -2,55 +2,80 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Baby era</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet"> 
+    <title>Best of 2024</title>
     <style>
+        @font-face {
+            font-family: 'Regular';
+            src: url('Regular.otf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Black';
+            src: url('Black.ttf') format('truetype');
+        }
         body {
-            font-family: 'Silkscreen', sans-serif;
+            font-family: 'Black', sans-serif;
             background-color: #1f1f1f;
-            padding: 10px;
+            padding: 2px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #game {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;   
             max-width: 600px;
             margin: auto;
             background-color: transparent;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #songImage {
-            max-width: 100%;
+            width: 85%;;
             height: auto;
+            align-items: center;
+        
         }
 
         #songName {
-        font-family: 'Roboto', sans-serif; /* Using Roboto font */
-        font-size: 50px; /* Larger font size */
-        color: #00fffb; /* Blue color */
-        font-weight: bold;
-        margin-top: 20px;
-        display: block;
-    }
+            font-family: 'Black', sans-serif;
+            font-size: 50px; /* Larger font size */
+            color: #00fffb; /* Blue color */
+            font-weight: bold;
+            margin-top: 20px;
+            display: block;
+        }
 
-        #introPage {
-            font-family: 'Silkscreen', sans-serif;    
+        #hintOverlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 1000;
             text-align: center;
         }
 
-        #songName {
-            font-family: 'Silkscreen', sans-serif;    
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-            display: block; /* Ensure it's always displayed */
+        #hintText {
+            font-family: 'Black', sans-serif;
+            font-size: 34px;
+            color: #ffcc00;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0 auto;
         }
 
         button {
-            font-family: 'Silkscreen', sans-serif;    
-            background-color: #00fffb;
+            font-family: 'Black', sans-serif;    
+            background-color: #8ACE00;
             color: #201b1b;
             border: none;
             padding: 10px 20px;
@@ -64,14 +89,15 @@
         }
 
         button:hover {
-            background-color: #00fffb90;
+            background-color: #8ACE00;
         }
+
         #topLeftButton {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;    
             position: fixed;
             top: 10px;
             left: 10px;
-            background-color: #00fffb;
+            background-color: #8ACE00;
             color: #201b1b;
             border: none;
             padding: 10px 20px;
@@ -82,11 +108,11 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        
+
         #topLeftButton:hover {
-            background-color: #00fffb90;
+            background-color: #6c9c0d;
         }
-    
+
         #songYear {
             font-size: 18px;
             font-weight: bold;
@@ -95,25 +121,28 @@
     </style>
 </head>
 <body>
-<a href="https://www.soundofai.com/era2.html" id="topLeftButton" style="font-family: 'Silkscreen', sans-serif;" target="_self">Næste era</a>
+<a href="https://www.soundofai.com/" id="topLeftButton" style="font-family: 'Black', sans-serif;" target="_self">Home</a>
 <canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
 <div style="text-align: center;">
-    <h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Baby era</h1>
+    <h1 style="font-family: 'Black', sans-serif; color: #8ACE00;">Best of 2024</h1>
 </div>
 <div id="introPage">
-    <img src="https://cdn.midjourney.com/f9768dc3-2957-48b2-9a0a-4e033f24795b/0_0.png" alt="love" width="500" height="500">
-    <p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">TEST Antal billeder: 7</p>
-    <button id="startButton">Start quizzen</button>
+    <img src="https://cdn.midjourney.com/98f2743e-a3f7-4cab-a0d7-c0894b368042/0_0.png" alt="1990s" width="500" height="500">
+    <p style="font-family: 'Black', sans-serif; color: #8ACE00; padding-top: 5px;">Play through some the biggest bangers from 2024!</p>
+    <button id="startButton">Start</button>
 </div>
 <div id="game" style="display: none;">
     <img id="songImage" src=""/>
     <div id="songName"></div>
     <div id="spotifyPlayer"></div>
-    <button id="revealButton" style="display: none;">Se svaret</button>
-    <button id="nextButton" style="display: none;">Næste billede</button>
+    <button id="revealButton" style="display: none;">Reveal answer</button>
+    <button id="nextButton" style="display: none;">Next image</button>
+</div>
+<div id="hintOverlay">
+    <div id="hintText"></div>
 </div>
 <div id="introPage">
-    <p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
+    <p style="font-family: 'Black', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
 </div>
 <script>
     const canvas = document.getElementById('background-canvas');
@@ -188,14 +217,19 @@
     }
 
     var songs = [
-        {name: '1994', image: 'https://cdn.midjourney.com/cd547f81-5493-4f52-83cb-0e3159665c1f/0_0.png', spotifyId: '06hsdMbBxWGqBO0TV0Zrkf'},
-        {name: '1995', image: 'https://cdn.midjourney.com/29c36e20-46e8-4594-aff9-26ca10f25515/0_0.png', spotifyId: '1qPbGZqppFwLwcBC1JQ6Vr'},
-        {name: '1995', image: 'https://cdn.midjourney.com/0ec0a457-eb3d-4b20-bc8b-f4fd02089bc2/0_3.png', spotifyId: '6qspW4YKycviDFjHBOaqUY'},
-        {name: '1995', image: 'https://cdn.midjourney.com/af3cb552-cf1c-463e-a6a4-4b4b9e54b439/0_0.png', spotifyId: '1DIXPcTDzTj8ZMHt3PDt8p'},
-        {name: '1997', image: 'https://cdn.midjourney.com/02ab79f9-f455-4e39-8e1d-31d5d6479f08/0_1.png', spotifyId: '5ZrDlcxIDZyjOzHdYW1ydr'},
-        {name: '1997', image: 'https://cdn.midjourney.com/5953debb-bd23-4901-b2d3-bdc4326c166a/0_0.png', spotifyId: '6e8Ou0wiqAzIpWb2eSxll8'},
-        {name: '1998', image: 'https://cdn.midjourney.com/e2da5597-cc80-4e60-9414-c9962dbe3c28/0_0.png', spotifyId: '3MjUtNVVq3C8Fn0MP3zhXa'}
-    ];
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+
+]; 
+ 
 
     var currentSong = 0;
 
@@ -203,8 +237,8 @@
         // Display the image
         document.getElementById('songImage').src = songs[currentSong].image;
 
-        // Display the song name immediately
-        document.getElementById('songName').innerText = songs[currentSong].name;
+        // Display the song name
+        document.getElementById('songName').innerText = songs[currentSong].year;
         document.getElementById('songName').style.display = 'block';
 
         // Reset Spotify Player (hide until "Se svaret" is clicked)
@@ -213,6 +247,9 @@
         // Adjust visibility of buttons
         document.getElementById('revealButton').style.display = 'block';
         document.getElementById('nextButton').style.display = 'none';
+
+        // Set the hint text
+        document.getElementById('hintText').innerText = songs[currentSong].hint;
     }
 
     function revealAnswer() {
@@ -246,6 +283,20 @@
     document.getElementById('nextButton').onclick = function() {
         nextSong();
     };
+
+    // Show hint overlay when "h" key is pressed
+    document.addEventListener('keydown', function(event) {
+        if (event.key === ' ') {
+            document.getElementById('hintOverlay').style.display = 'block';
+        }
+    });
+
+    // Hide hint overlay when "h" key is released
+    document.addEventListener('keyup', function(event) {
+        if (event.key === ' ') {
+            document.getElementById('hintOverlay').style.display = 'none';
+        }
+    });
 </script>
 </body>
 </html>

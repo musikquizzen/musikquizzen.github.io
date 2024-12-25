@@ -2,54 +2,79 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Folkeskole era</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet"> 
+    <title>Drengene fra Angora</title>
     <style>
+        @font-face {
+            font-family: 'Regular';
+            src: url('Regular.otf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Black';
+            src: url('Black.ttf') format('truetype');
+        }
         body {
-            font-family: 'Silkscreen', sans-serif;
+            font-family: 'Black', sans-serif;
             background-color: #1f1f1f;
-            padding: 10px;
+            padding: 2px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #game {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;   
             max-width: 600px;
             margin: auto;
             background-color: transparent;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #songImage {
-            max-width: 100%;
+            width: 85%;;
             height: auto;
+            align-items: center;
+        
         }
 
         #songName {
-        font-family: 'Roboto', sans-serif; /* Using Roboto font */
-        font-size: 50px; /* Larger font size */
-        color: #00fffb; /* Blue color */
-        font-weight: bold;
-        margin-top: 20px;
-        display: block;
-    }
+            font-family: 'Black', sans-serif;
+            font-size: 50px; /* Larger font size */
+            color: #00fffb; /* Blue color */
+            font-weight: bold;
+            margin-top: 20px;
+            display: block;
+        }
 
-        #introPage {
-            font-family: 'Silkscreen', sans-serif;    
+        #hintOverlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 1000;
             text-align: center;
         }
 
-        #songName {
-            font-family: 'Silkscreen', sans-serif;    
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-            display: block; /* Ensure it's always displayed */
+        #hintText {
+            font-family: 'Black', sans-serif;
+            font-size: 34px;
+            color: #ffcc00;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0 auto;
         }
 
         button {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;    
             background-color: #00fffb;
             color: #201b1b;
             border: none;
@@ -66,8 +91,9 @@
         button:hover {
             background-color: #00fffb90;
         }
+
         #topLeftButton {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;    
             position: fixed;
             top: 10px;
             left: 10px;
@@ -82,11 +108,11 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        
+
         #topLeftButton:hover {
             background-color: #00fffb90;
         }
-    
+
         #songYear {
             font-size: 18px;
             font-weight: bold;
@@ -95,25 +121,28 @@
     </style>
 </head>
 <body>
-<a href="https://www.soundofai.com/era3.html" id="topLeftButton" style="font-family: 'Silkscreen', sans-serif;" target="_self">Næste era</a>
+<a href="https://www.soundofai.com/" id="topLeftButton" style="font-family: 'Black', sans-serif;" target="_self">Home</a>
 <canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
 <div style="text-align: center;">
-    <h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Folkeskole era</h1>
+    <h1 style="font-family: 'Black', sans-serif; color: #00fffb;">Drengene fra Angora</h1>
 </div>
 <div id="introPage">
-    <img src="https://cdn.midjourney.com/33ff9de8-3267-4d14-a74e-ce56f5ff578e/0_0.png" alt="love" width="500" height="500">
-    <p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Antal billeder: 16</p>
-    <button id="startButton">Start quizzen</button>
+    <img src="https://cdn.midjourney.com/9383ae64-74a6-483d-a762-f546c4a19dd8/0_0.png" alt="1970s" width="500" height="500">
+    <p style="font-family: 'Black', sans-serif; color: #00fffb; padding-top: 5px;">Alle de største sange fra Drengene fra Angora!</p>
+    <button id="startButton">Start</button>
 </div>
 <div id="game" style="display: none;">
     <img id="songImage" src=""/>
     <div id="songName"></div>
     <div id="spotifyPlayer"></div>
-    <button id="revealButton" style="display: none;">Se svaret</button>
-    <button id="nextButton" style="display: none;">Næste billede</button>
+    <button id="revealButton" style="display: none;">Reveal answer</button>
+    <button id="nextButton" style="display: none;">Next image</button>
+</div>
+<div id="hintOverlay">
+    <div id="hintText"></div>
 </div>
 <div id="introPage">
-    <p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
+    <p style="font-family: 'Black', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
 </div>
 <script>
     const canvas = document.getElementById('background-canvas');
@@ -188,24 +217,18 @@
     }
 
     var songs = [
-    {name: '2001', image: 'https://cdn.midjourney.com/b3a8e352-784a-403c-93d7-a974695b7c08/0_0.png', spotifyId: '4tKGFmENO69tZR9ahgZu48'},
-    {name: '2002', image: 'https://cdn.midjourney.com/edf9de03-71c0-4672-a1df-0ba1c8e642b8/0_0.png', spotifyId: '7LqjznQwfrax7MjQXmxqdQ'},
-    {name: '2003', image: 'https://cdn.midjourney.com/fb3bb904-fbe2-4f4b-b6fe-ed26d04336bd/0_0.png', spotifyId: '0zjB7ewBWnMgQDMQpFzt92'},
-    {name: '2003', image: 'https://cdn.midjourney.com/fd287da8-df47-485e-999b-60ec528d6927/0_0.png', spotifyId: '7iL6o9tox1zgHpKUfh9vuC'},
-    {name: '2003', image: 'https://cdn.midjourney.com/a15fa96c-2a67-4a3a-af7f-ca215bc30d3f/0_0.png', spotifyId: '7MJQ9Nfxzh8LPZ9e9u68Fq'},
-    {name: '2004', image: 'https://cdn.midjourney.com/5e8b8527-bdcb-4cbd-b215-4d93b8fa5039/0_0.png', spotifyId: '2NBQmPrOEEjA8VbeWOQGxO'},
-    {name: '2004', image: 'https://cdn.midjourney.com/8ad95c6b-db5b-4cd4-bea1-a8ab71d60013/0_0.png', spotifyId: '6I9VzXrHxO9rA9A5euc8Ak'},
-    {name: '2004', image: 'https://cdn.midjourney.com/6a2bd4a4-6984-4f17-940d-c22aac703a93/0_3.png', spotifyId: '3U5JVgI2x4rDyHGObzJfNf'},
-    {name: '2005', image: 'https://cdn.midjourney.com/35201885-9974-4210-ae58-3a4f59bf99da/0_0.png', spotifyId: '1PS1QMdUqOal0ai3Gt7sDQ'},
-    {name: '2005', image: 'https://cdn.midjourney.com/8fbf9f53-9ea6-4afb-901f-bdbd181c8c8f/0_0.png', spotifyId: '5D2mYZuzcgjpchVY1pmTPh'},
-    {name: '2006', image: 'https://cdn.midjourney.com/305b8e51-060f-4608-90cf-89e0ee675267/0_0.png', spotifyId: '3kZoay4ANo86ehb6s4RwS9'},
-    {name: '2006', image: 'https://cdn.midjourney.com/c8f9dd88-9c87-480d-ab9e-7971ded38211/0_0.png', spotifyId: '30cSNer6TV8x2utjULVeQ5'},
-    {name: '2006', image: 'https://cdn.midjourney.com/df3583a1-f31a-4b7d-bdb4-7232896fda7b/0_0.png', spotifyId: '07K4GcCDSTiXUF5ssyTRUM'},
-    {name: '2007', image: 'https://cdn.midjourney.com/02389c81-09f5-425e-8ec5-c9cec55acef6/0_0.png', spotifyId: '49FYlytm3dAAraYgpoJZux'},
-    {name: '2008', image: 'https://cdn.midjourney.com/0dc94ae6-7fa3-4c54-92a2-4922c68017aa/0_0.png', spotifyId: '5PX4uS1LqlWEPL69phPVQQ'},
-    {name: '2009', image: 'https://cdn.midjourney.com/04fe11b4-23d9-4f3c-8329-50e2129811ea/0_0.png', spotifyId: '0vFqrfM1ENw2Co4z82wB1A'}
-    
-];
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+]; 
+ 
 
     var currentSong = 0;
 
@@ -213,8 +236,8 @@
         // Display the image
         document.getElementById('songImage').src = songs[currentSong].image;
 
-        // Display the song name immediately
-        document.getElementById('songName').innerText = songs[currentSong].name;
+        // Display the song name
+        document.getElementById('songName').innerText = songs[currentSong].year;
         document.getElementById('songName').style.display = 'block';
 
         // Reset Spotify Player (hide until "Se svaret" is clicked)
@@ -223,6 +246,9 @@
         // Adjust visibility of buttons
         document.getElementById('revealButton').style.display = 'block';
         document.getElementById('nextButton').style.display = 'none';
+
+        // Set the hint text
+        document.getElementById('hintText').innerText = songs[currentSong].hint;
     }
 
     function revealAnswer() {
@@ -256,6 +282,20 @@
     document.getElementById('nextButton').onclick = function() {
         nextSong();
     };
+
+    // Show hint overlay when "h" key is pressed
+    document.addEventListener('keydown', function(event) {
+        if (event.key === ' ') {
+            document.getElementById('hintOverlay').style.display = 'block';
+        }
+    });
+
+    // Hide hint overlay when "h" key is released
+    document.addEventListener('keyup', function(event) {
+        if (event.key === ' ') {
+            document.getElementById('hintOverlay').style.display = 'none';
+        }
+    });
 </script>
 </body>
 </html>

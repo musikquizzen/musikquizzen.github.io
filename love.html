@@ -1,44 +1,80 @@
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/>
-<title>Love and heart break 💕</title>
-<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Indie+Flower&family=Playpen+Sans:wght@100;200&family=Roboto:wght@100&family=Silkscreen&display=swap" rel="stylesheet"> 
-<style>
+    <meta charset="utf-8"/>
+    <title>Love hurts, love heals</title>
+    <style>
+        @font-face {
+            font-family: 'Regular';
+            src: url('coolvetica_it.otf') format('opentype');
+        }
+        @font-face {
+            font-family: 'Black';
+            src: url('Black.ttf') format('truetype');
+        }
         body {
-            font-family: 'Silkscreen', sans-serif;
+            font-family: 'Black', sans-serif;
             background-color: #1f1f1f;
-            padding: 10px;
+            padding: 2px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #game {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;   
             max-width: 600px;
             margin: auto;
             background-color: transparent;
-            padding: 10px;
+            padding: 20px;
             border-radius: 5px;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #songImage {
-            max-width: 100%;
+            width: 85%;;
             height: auto;
-        }
-
-        #introPage {
-            font-family: 'Silkscreen', sans-serif;    
-            text-align: center;
+            align-items: center;
+        
         }
 
         #songName {
-            font-family: 'Silkscreen', sans-serif;    
-            font-size: 24px;
+            font-family: 'Black', sans-serif;
+            font-size: 50px; /* Larger font size */
+            color: #00fffb; /* Blue color */
             font-weight: bold;
             margin-top: 20px;
+            display: block;
+        }
+
+        #hintOverlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #hintText {
+            font-family: 'Regular', sans-serif;
+            font-size: 34px;
+            color: #ffcc00;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0 auto;
         }
 
         button {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;    
             background-color: #00fffb;
             color: #201b1b;
             border: none;
@@ -55,8 +91,9 @@
         button:hover {
             background-color: #00fffb90;
         }
+
         #topLeftButton {
-            font-family: 'Silkscreen', sans-serif;    
+            font-family: 'Black', sans-serif;    
             position: fixed;
             top: 10px;
             left: 10px;
@@ -71,49 +108,52 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        
+
         #topLeftButton:hover {
             background-color: #00fffb90;
         }
-    
-#songYear {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-</style>
+
+        #songYear {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-<a href="https://www.soundofai.com" id="topLeftButton" style="font-family: 'Silkscreen', sans-serif;" target="_self">Hjem</a>
-<canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
+<body>
+<a href="https://www.soundofai.com/" id="topLeftButton" style="font-family: 'Black', sans-serif;" target="_self">Home</a>
 <canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
 <div style="text-align: center;">
-<h1 style="font-family: 'Silkscreen', sans-serif; color: #00fffb;">Love and heart break 💕 (2000-Current)</h1>
+    <h1 style="font-family: 'Black', sans-serif; color: #00fffb;">Love hurts, love heals</h1>
 </div>
 <div id="introPage">
-<img src="https://cdn.midjourney.com/a5d2f6ec-fac8-44a4-bc5e-42fcce3b4abf/0_1.webp" alt="love" width="500" height="500">
-<p style="font-family: 'Silkscreen', sans-serif; color: #00fffb; padding-top: 5px;">Images: 12</p>
-<button id="startButton">Start quiz</button>
+    <img src="https://cdn.midjourney.com/72678534-7149-4c5e-b62a-b9778c872f8b/0_3.png" alt="love" width="500" height="500">
+    <p style="font-family: 'Black', sans-serif; color: #00fffb; padding-top: 5px;">Play through famous songs about true love and broken hearts!</p>
+    <button id="startButton">Start</button>
 </div>
-<div id="game">
-<img id="songImage" src=""/>
-<div id="songName" style="display: none;"></div>
-<div id="spotifyPlayer"></div>
-<button id="revealButton" style="display: none;">Answer</button>
-<button id="nextButton" style="display: none;">Next</button>
+<div id="game" style="display: none;">
+    <img id="songImage" src=""/>
+    <div id="songName"></div>
+    <div id="spotifyPlayer"></div>
+    <button id="revealButton" style="display: none;">Reveal answer</button>
+    <button id="nextButton" style="display: none;">Next image</button>
+</div>
+<div id="hintOverlay">
+    <div id="hintText"></div>
 </div>
 <div id="introPage">
-<p style="font-family: 'Silkscreen', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
+    <p style="font-family: 'Black', sans-serif; color: #717171; font-size: 10px;">Teis Lebeck</p>
 </div>
 <script>
-        const canvas = document.getElementById('background-canvas');
-        const ctx = canvas.getContext('2d');
-        let particlesArray;
-    
-        // get size of window
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    
-        class Particle {
+    const canvas = document.getElementById('background-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    // get size of window
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
         constructor(x, y, size, speed) {
             this.x = x;
             this.y = y;
@@ -121,7 +161,6 @@
             this.speed = speed;
         }
 
-        // method to draw individual particle
         draw() {
             ctx.fillStyle = 'rgba(173, 216, 230, 0.8)';
             ctx.beginPath();
@@ -130,7 +169,6 @@
             ctx.fill();
         }
 
-        // update particle movement
         update() {
             this.x += this.speed;
             if (this.x > canvas.width) {
@@ -141,7 +179,6 @@
         }
     }
 
-    // create particle array
     function init() {
         particlesArray = [];
         let numberOfParticles = (canvas.height * canvas.width) / 30000;
@@ -154,7 +191,6 @@
         }
     }
 
-    // animate particles
     function animateParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < particlesArray.length; i++) {
@@ -163,85 +199,104 @@
         requestAnimationFrame(animateParticles);
     }
 
-    // reinitialize canvas on window resize
     window.addEventListener('resize', function () {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         init();
     });
 
-    // call init() and animateParticles() to start the animation
     init();
     animateParticles();
-    </script>
+</script>
 <script>
-        function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
     }
-}
-        var songs = [
-            {name: 'Placeholder', image: '', spotifyId: ''},
-            {name: 'Bleeding love', image: 'https://cdn.midjourney.com/75630c52-5a34-4993-940a-3ba890e38345/0_2.webp', spotifyId: '6LtPIXlIzPOTF8vTecYjRe'},
-            {name: 'Good 4 u', image: 'https://cdn.midjourney.com/df056faa-d346-462f-9fe2-cdc46f3c4e73/0_0.webp', spotifyId: '4ZtFanR9U6ndgddUvNcjcG'},
-            {name: 'Love yourself', image: 'https://cdn.midjourney.com/2424bca5-5a24-4a11-914c-25d9546330a2/0_2.webp', spotifyId: '50kpGaPAhYJ3sGmk6vplg0'},
-            {name: 'Halo', image: 'https://cdn.midjourney.com/30ea5e51-a5bb-492c-93ad-62a64c9d1cd5/0_3.webp', spotifyId: '2CvOqDpQIMw69cCzWqr5yr'},
-            {name: 'Gotta go my own way', image: 'https://cdn.midjourney.com/6635029e-31b5-4917-a557-6e7362e92dfc/0_2.webp', spotifyId: '5rWIO1uP0GwAoU45RTBJ2F'},
-            {name: 'Love story', image: 'https://cdn.midjourney.com/393d23aa-3daf-43a9-813c-71faceee0f1c/0_2.webp', spotifyId: '1D4PL9B8gOg78jiHg3FvBb'},
-            {name: 'Break your heart', image: 'https://cdn.midjourney.com/977e5b68-9615-4733-bba3-0f216f569585/0_2.webp', spotifyId: '7ElF5zxOwYP4qVSWVvse3W'},
-            {name: 'Riding solo', image: 'https://cdn.midjourney.com/d6dd9f3b-0c86-40fb-8c5a-165ec69ed295/0_2.webp', spotifyId: '6OEolOOk9Gh9bqkdpfIOl0'},
-            {name: 'Shape of you', image: 'https://cdn.midjourney.com/e70572fb-f9ff-4142-8413-c7fe21106ca9/0_0.webp', spotifyId: '7qiZfU4dY1lWllzX7mPBI3'},
-            {name: 'Crazy in love', image: 'https://cdn.midjourney.com/1e31b7b1-605f-4080-9d6f-ba59de80c880/0_2.webp', spotifyId: '5IVuqXILoxVWvWEPm82Jxr'},
-            {name: 'We are never ever getting back together', image: 'https://cdn.midjourney.com/474aa880-a1e2-4374-b3a4-19959018fe4c/0_0.webp', spotifyId: '5YqltLsjdqFtvqE7Nrysvs'},
-            {name: 'Shower', image: 'https://cdn.midjourney.com/cfcc4fcf-50aa-4ac3-b189-240db0a390f6/0_1.webp', spotifyId: '3DmW6y7wTEYHJZlLo1r6XJ'},
-        ];
 
-                var currentSong = 0;
+    var songs = [
+{year: '2007', image: 'https://cdn.midjourney.com/75630c52-5a34-4993-940a-3ba890e38345/0_2.webp', spotifyId: '6LtPIXlIzPOTF8vTecYjRe', hint: 'The artist won the British version of X-factor'}, // Bleeding love
+{year: '2021', image: 'https://cdn.midjourney.com/df056faa-d346-462f-9fe2-cdc46f3c4e73/0_0.webp', spotifyId: '4ZtFanR9U6ndgddUvNcjcG', hint: 'How you can respond, when someone tells you they are doing well, but you are not'}, // Good 4 u
+{year: '2015', image: 'https://cdn.midjourney.com/2424bca5-5a24-4a11-914c-25d9546330a2/0_2.webp', spotifyId: '50kpGaPAhYJ3sGmk6vplg0', hint: 'If you cannot do this to yourself, you cannot do it to others'}, // Love yourself
+{year: '2008', image: 'https://cdn.midjourney.com/30ea5e51-a5bb-492c-93ad-62a64c9d1cd5/0_3.webp', spotifyId: '2CvOqDpQIMw69cCzWqr5yr', hint: 'If you know, you know'}, // Halo
+{year: '2007', image: 'https://cdn.midjourney.com/6635029e-31b5-4917-a557-6e7362e92dfc/0_2.webp', spotifyId: '5rWIO1uP0GwAoU45RTBJ2F', hint: 'Sometimes, you should not follow others'}, // Gotta go my own way
+{year: '2008', image: 'https://cdn.midjourney.com/393d23aa-3daf-43a9-813c-71faceee0f1c/0_2.webp', spotifyId: '1D4PL9B8gOg78jiHg3FvBb', hint: 'You can read this in a book'}, // Love story
+{year: '2010', image: 'https://cdn.midjourney.com/977e5b68-9615-4733-bba3-0f216f569585/0_2.webp', spotifyId: '7ElF5zxOwYP4qVSWVvse3W', hint: 'This happens during a break up'}, // Break your heart
+{year: '2010', image: 'https://cdn.midjourney.com/d6dd9f3b-0c86-40fb-8c5a-165ec69ed295/0_2.webp', spotifyId: '6OEolOOk9Gh9bqkdpfIOl0', hint: 'What do cowboys do? '}, // Riding solo
+{year: '2017', image: 'https://cdn.midjourney.com/e70572fb-f9ff-4142-8413-c7fe21106ca9/0_0.webp', spotifyId: '7qiZfU4dY1lWllzX7mPBI3', hint: 'Think of the purpose of a cookie cutter'}, // Shape of you
+{year: '2003', image: 'https://cdn.midjourney.com/1e31b7b1-605f-4080-9d6f-ba59de80c880/0_2.webp', spotifyId: '5IVuqXILoxVWvWEPm82Jxr', hint: 'This could get you into an asylum'}, // Crazy in love
+{year: '2014', image: 'https://cdn.midjourney.com/cfcc4fcf-50aa-4ac3-b189-240db0a390f6/0_1.webp', spotifyId: '3DmW6y7wTEYHJZlLo1r6XJ', hint: 'We all become great singers here'}, // Shower
+];
+ 
 
-        function revealAnswer() {
-            document.getElementById('songName').innerTextz = songs[currentSong].name;
-            document.getElementById('songName').style.display = 'block';
-            document.getElementById('revealButton').style.display = 'none';
-            document.getElementById('nextButton').style.display = 'block';
-            
-            var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
-            document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
+    var currentSong = 0;
+
+    function displaySong() {
+        // Display the image
+        document.getElementById('songImage').src = songs[currentSong].image;
+
+        // Display the song name
+        document.getElementById('songName').innerText = songs[currentSong].year;
+        document.getElementById('songName').style.display = 'block';
+
+        // Reset Spotify Player (hide until "Se svaret" is clicked)
+        document.getElementById('spotifyPlayer').innerHTML = '';
+
+        // Adjust visibility of buttons
+        document.getElementById('revealButton').style.display = 'block';
+        document.getElementById('nextButton').style.display = 'none';
+
+        // Set the hint text
+        document.getElementById('hintText').innerText = songs[currentSong].hint;
+    }
+
+    function revealAnswer() {
+        // Display the Spotify Player
+        var spotifyEmbed = '<iframe src="https://open.spotify.com/embed/track/' + songs[currentSong].spotifyId + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+        document.getElementById('spotifyPlayer').innerHTML = spotifyEmbed;
+
+        // Hide the reveal button, show the next button
+        document.getElementById('revealButton').style.display = 'none';
+        document.getElementById('nextButton').style.display = 'block';
+    }
+
+    function nextSong() {
+        currentSong++;
+        if (currentSong >= songs.length) {
+            currentSong = 0; // Loop back to the first song
         }
+        displaySong();
+    }
 
-        function nextSong() {
-            currentSong++;
-            if (currentSong < songs.length) {
-                document.getElementById('songImage').src = songs[currentSong].image;
-                document.getElementById('songName').style.display = 'none';
-                document.getElementById('spotifyPlayer').innerHTML = '';
-                document.getElementById('revealButton').style.display = 'block';
-                document.getElementById('nextButton').style.display = 'none';
-            } else {
-                var noMoreSongsElement = document.getElementById('game');
-                noMoreSongsElement.innerHTML = '';  // Clear existing content
-                var imageElement = document.createElement('img');
-                imageElement.src = 'https://teislebeck.github.io/images/end.png';  // Replace with the path to your image file
-                imageElement.alt = 'No More Songs Image';  // Optional alt text for accessibility
-                imageElement.width = 500;  // Set the width to 500 pixels
-                imageElement.height = 500; // Set the height to 500 pixels
-                imageElement.style.display = 'block'; // Ensure it's a block-level element
-                imageElement.style.margin = 'auto';  // Center the image horizontally
-                noMoreSongsElement.appendChild(imageElement);
-            }
-        }
-
-        document.getElementById('revealButton').onclick = revealAnswer;
-        document.getElementById('nextButton').onclick = nextSong;
-    </script>
-<script>
-        document.getElementById('startButton').onclick = function() {
+    document.getElementById('startButton').onclick = function() {
         document.getElementById('introPage').style.display = 'none';
         document.getElementById('game').style.display = 'block';
-        document.getElementById('songImage').src = songs[currentSong].image;
-        document.getElementById('revealButton').style.display = 'block';
+        displaySong(); // Start with the first song
+    };
+
+    document.getElementById('revealButton').onclick = function() {
+        revealAnswer();
+    };
+
+    document.getElementById('nextButton').onclick = function() {
         nextSong();
-        };
-    </script>
+    };
+
+    // Show hint overlay when "h" key is pressed
+    document.addEventListener('keydown', function(event) {
+        if (event.key === ' ') {
+            document.getElementById('hintOverlay').style.display = 'block';
+        }
+    });
+
+    // Hide hint overlay when "h" key is released
+    document.addEventListener('keyup', function(event) {
+        if (event.key === ' ') {
+            document.getElementById('hintOverlay').style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
