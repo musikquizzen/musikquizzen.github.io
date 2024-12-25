@@ -291,14 +291,14 @@
 
     // Show hint overlay when "h" key is pressed
     document.addEventListener('keydown', function(event) {
-        if (event.key === ' ') {
+        if (event.key === 'Enter') {
             document.getElementById('hintOverlay').style.display = 'block';
         }
     });
 
     // Hide hint overlay when "h" key is released
     document.addEventListener('keyup', function(event) {
-        if (event.key === ' ') {
+        if (event.key === 'Enter') {
             document.getElementById('hintOverlay').style.display = 'none';
         }
     });
