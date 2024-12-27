@@ -6,7 +6,7 @@
     <style>
         @font-face {
             font-family: 'Regular';
-            src: url('Regular.otf') format('truetype');
+            src: url('coolvetica_it.otf') format('opentype');
         }
         @font-face {
             font-family: 'Black';
@@ -64,7 +64,7 @@
         }
 
         #hintText {
-            font-family: 'Black', sans-serif;
+            font-family: 'Regular', sans-serif;
             font-size: 34px;
             color: #ffcc00;
             position: relative;
@@ -127,8 +127,8 @@
     <h1 style="font-family: 'Black', sans-serif; color: #00fffb;">Drengene fra Angora</h1>
 </div>
 <div id="introPage">
-    <img src="https://cdn.midjourney.com/9383ae64-74a6-483d-a762-f546c4a19dd8/0_0.png" alt="1970s" width="500" height="500">
-    <p style="font-family: 'Black', sans-serif; color: #00fffb; padding-top: 5px;">Alle de største sange fra Drengene fra Angora!</p>
+    <img src="https://cdn.midjourney.com/94ffc049-110d-4d79-bcb6-5f11ac40ccd2/0_0.png" alt="angora" width="500" height="500">
+    <p style="font-family: 'Black', sans-serif; color: #00fffb; padding-top: 5px;">Alle klassikerne fra Drengene fra Angora!</p>
     <button id="startButton">Start</button>
 </div>
 <div id="game" style="display: none;">
@@ -217,16 +217,25 @@
     }
 
     var songs = [
-{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
-{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
-{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
-{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
-{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
-{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
-{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
-{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
-{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
-{year: 'year', image: 'image', spotifyId: 'spotify', hint: 'SONGHINT'}, // song
+{year: '2004', image: 'https://cdn.midjourney.com/882adb95-92d2-4d94-af54-afd989258851/0_0.png', spotifyId: '7KfKDGFAGfY40CHYp31Xvd', hint: '🎵 Jeg havde købt en sexet skjorte🎵'}, // Bildæk
+{year: '2007', image: 'https://cdn.midjourney.com/f2006047-e71f-43f9-b0ab-8c1b01335887/0_0.png', spotifyId: '1h1QUBDdzlNR1VF2Q0ZqNl', hint: '🎵 Jeg sagde undskyld og skød så den rødhårede mand 🎵'}, // Ræven og tegnebogen
+{year: '2004', image: 'https://cdn.midjourney.com/e30195c0-e227-4cf4-aa67-84d99499aba4/0_2.png', spotifyId: '4P0HGIhWV7dm2KzlZUEHZJ', hint: '🎵 Vi træner både dag og nat 🎵'}, // Baghjul nede i touren
+{year: '2004', image: 'https://cdn.midjourney.com/e3a6c47b-1dae-4979-8abc-fe318897a8b7/0_3.png', spotifyId: '0dr7Z6A31SO8T0g1AxFT8E', hint: '🎵 Hun kom med bussen 🎵'}, // Blind date
+{year: '2004', image: 'https://cdn.midjourney.com/a12034f4-d0c3-43bc-b791-595fdc311bf1/0_2.png', spotifyId: '3x3GJmNAcyuM9QvURHe48a', hint: '🎵 Men han er ikke lige vores kop te 🎵'}, // Ridder problemer
+{year: '2004', image: 'https://cdn.midjourney.com/bc29f767-2d0a-43bf-b8c0-b633509b9bc8/0_0.png', spotifyId: '1c6UwDqRjUFI7fU6QWuB34', hint: '🎵 For der er myldretid i min tarm 🎵'}, // Voksenbaby
+{year: '2004', image: 'https://cdn.midjourney.com/4074c358-e8bc-4480-9a09-200aa016ca14/0_0.png', spotifyId: '3TaFHFG4i3QCS192UiHB3W', hint: '🎵 Jeg er en dygtig server 🎵'}, // Tennisbolden
+{year: '2007', image: 'https://cdn.midjourney.com/2ea70dc3-1132-4ebb-8502-0296f1cf729a/0_0.png', spotifyId: '1HY0n5wqoCIkFloG48m1bE', hint: '🎵 Det var mor, der kom med saft og kage 🎵'}, // Kiks
+{year: '2004', image: 'https://cdn.midjourney.com/729f8b1f-0f40-4c36-9166-c3da4b43fc82/0_3.png', spotifyId: '7iyJbyW4LpKCyGWIpWmgEM', hint: '🎵 Det ved jeg godt, jeg er jo uddannet apoteker 🎵'}, // Gummi nej tak
+{year: '2004', image: 'https://cdn.midjourney.com/05b19efb-7faf-48c0-b8c3-91e01ad70c12/0_0.png', spotifyId: '31p3CA2ZrIVDagSGrYRBhO', hint: '🎵 Og vi havde et fag, der hed japansk keramik 🎵'}, // Kun minderne tilbage
+{year: '2004', image: 'https://cdn.midjourney.com/1c50c85f-bd5f-4e17-8511-b26eedc91cb5/0_0.png', spotifyId: '6SzR4uw6dMEDieITSfsSHA', hint: '🎵 Kineserne de elsker fis tralala 🎵'}, // Rejsesangen
+{year: '2004', image: 'https://cdn.midjourney.com/73c30171-e60b-470e-af1f-660f02b5adab/0_0.png', spotifyId: '0iEUe0L7ha1zVy1PeOc07B', hint: '🎵 1 2 3 🎵'}, // Det bette egern
+{year: '2004', image: 'https://cdn.midjourney.com/9faa917f-8493-484f-a858-0e52c52c224f/0_0.png', spotifyId: '3h1EyGcRWCE1IKPhHgcIoa', hint: '🎵 Uuuh uuuh 🎵'}, // Den forfærdelige musefælde
+{year: '2004', image: 'https://cdn.midjourney.com/9b134d9c-ebd9-4dac-8c0d-e3b18d1b0070/0_0.png', spotifyId: '7p8hNCxnWe92Nen9yxG5Aq', hint: '🎵 For vi knullar ut på sundet 🎵'}, // Oresundsvisen
+{year: '2007', image: 'https://cdn.midjourney.com/9d8933fc-cbdc-4b3b-a296-0a9b8db30bc8/0_1.png', spotifyId: '0SYVTWzuhL657aYyTPvKFb', hint: '🎵 Med pibe og med briller og med hat 🎵'}, // Ansigt
+{year: '2007', image: 'https://cdn.midjourney.com/0074b805-46c8-4354-a367-03d396fd53de/0_0.png', spotifyId: '3AQgKsmXKNhescgsQ9lhoY', hint: '🎵 Mine venner er nede i graven 🎵'}, // Åh nej, jeg kom til det igen
+{year: '2007', image: 'https://cdn.midjourney.com/da1195a6-b5bc-4cb4-9516-4e0b8b56cffb/0_0.png', spotifyId: '6zPzuP83ZmyebyBs7FqaRJ', hint: '🎵 Det var en samling pensionister 🎵'}, // Panserbassen
+{year: '2007', image: 'https://cdn.midjourney.com/bd17cad3-9593-42f4-9f79-ab7b6ab76274/0_0.png', spotifyId: '3e0xKAS2dvOQOHwZI8NQsG', hint: '🎵 Kold lambrusco og kiks med brie 🎵'}, // Øl, fisse og hornmusik
+{year: '2007', image: 'https://cdn.midjourney.com/edab0a49-e00f-4c07-9033-63afebabb8be/0_1.png', spotifyId: '2LfaTroC4s5frq5MwDL7S8', hint: '🎵 Hvis jeg skal have en med hjem, skal hun være langt over de 60 🎵'}, // Tove
 ]; 
  
 
