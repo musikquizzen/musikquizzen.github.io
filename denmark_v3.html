@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Danske bangers - vol. 2</title>
+    <title>Danske bangers - vol. 3</title>
     <style>
         @font-face {
             font-family: 'Regular';
@@ -124,11 +124,11 @@
 <a href="https://www.soundofai.com/" id="topLeftButton" style="font-family: 'Black', sans-serif;" target="_self">Home</a>
 <canvas id="background-canvas" style="position:fixed;z-index:-1;"></canvas>
 <div style="text-align: center;">
-    <h1 style="font-family: 'Black', sans-serif; color: #00fffb;">Danske bangers - vol. 2</h1>
+    <h1 style="font-family: 'Black', sans-serif; color: #00fffb;">Danske bangers - vol. 3</h1>
 </div>
 <div id="introPage">
-    <img src="https://cdn.midjourney.com/8574071d-c0c3-41b8-8efa-d0b5d8fd2e21/0_3.png alt="dk_vol2" width="500" height="500">
-    <p style="font-family: 'Black', sans-serif; color: #00fffb; padding-top: 5px;">Endnu en omgang af de bedste danske bangers!</p>
+    <img src="https://cdn.midjourney.com/6b6cd749-ebc9-427d-9953-4a15267f8e92/0_0.png" alt="dk_vol3" width="500" height="500"> 
+    <p style="font-family: 'Black', sans-serif; color: #00fffb; padding-top: 5px;">Vi tager endnu en runde af de bedste danske bangers!</p>
     <button id="startButton">Start</button>
 </div>
 <div id="game" style="display: none;">
@@ -217,24 +217,27 @@
     }
 
     var songs = [
-{year: '1987', image: 'https://cdn.midjourney.com/23b186c4-47af-42e8-920d-a3b2a284385c/0_2.webp', spotifyId: '47f5VH4gBRdqkMtFctiveF', hint: 'Læg mærke til baggrunden'}, // Danse i måneskin
-{year: '2020', image: 'https://cdn.midjourney.com/86c791b3-c3f5-4284-a7e1-96f5d52adf86/0_1.webp', spotifyId: '4xTlom5tmNmAvQ1FCgtfyM', hint: 'Et andet udtryk for en gruppe af drengevenner'}, // Gutterne
-{year: '2022', image: 'https://cdn.midjourney.com/638d53a4-9746-4676-961a-ba5d8152e178/0_3.webp', spotifyId: '4XhW9iOypxiiNyIMpirPFv', hint: 'Man arbejder deltid her'}, // Mucki bar
-{year: '2020', image: 'https://cdn.midjourney.com/418a16b8-0b0b-4646-8da9-57097451074a/0_0.webp', spotifyId: '0qA2qykpcGdVl3tiiYum4g', hint: 'Det er meget lille chance for regn'}, // Blå himmel
-{year: '1997', image: 'https://cdn.midjourney.com/4086a689-0ae7-42ca-b5e8-e77b373ecb21/0_1.webp', spotifyId: '1bogz3k48T3WwtErpk87wB', hint: 'Titlen er fransk, men bandet er dansk'}, // Bonsoir Madame
-{year: '2017', image: 'https://cdn.midjourney.com/b591a7b5-ed2d-4af4-ab5f-70a6decd3e9b/0_1.webp', spotifyId: '7z1L6Edc4sN0WtA8HXH9iJ', hint: 'Sangen er lavet som en hyldest til FC København'}, // Gulddans
-{year: '2009', image: 'https://cdn.midjourney.com/62268536-670b-4dae-bedc-d38ec6f15fba/0_0.webp', spotifyId: '0LLRvWfXAmV7BlFySw5N9i', hint: 'Engelsk titel, men bandet er dansk'}, // Police Bells & Church Sirens
-{year: '2015', image: 'https://cdn.midjourney.com/1eba08d1-3cae-4aa7-87bd-97bd5a92f645/0_1.webp', spotifyId: '7kQ5USXOqajlefGbavFfCe', hint: '🎵 Du kan ikke fryse mig 🎵'}, // Allerede is
-{year: '2005', image: 'https://cdn.midjourney.com/350b9286-2529-4fc6-97c7-5c8b109833af/0_2.webp', spotifyId: '1RGL48ceSL1dAgzCgmZTdj', hint: 'Bandet deler navn med en fjernsynskanal'}, // De første kærester på månen
-{year: '2004', image: 'https://cdn.midjourney.com/80bfd55b-9612-4c92-b556-f62c10005bad/0_3.webp', spotifyId: '35mxhmxJen5eRB0bkCJkrT', hint: 'Det er et stor ledetråd skrevet et sted på billedet'}, // Valby bakke
-{year: '2014', image: 'https://cdn.midjourney.com/2f7c281e-f332-4ef3-b297-33b5373de36b/0_3.webp', spotifyId: '5eX78VCIia3G4A6tbdV5n3', hint: 'Manden skal ligne dén person, som sangen handler om'}, // Stein Bagger
-{year: '1984', image: 'https://cdn.midjourney.com/705a4552-e92a-4473-a091-2464c9b3602f/0_2.webp', spotifyId: '40QBAl5ijcFWV7A2fKjYH5', hint: '🎵 Med de meget lange ører 🎵'}, // Vilde kaniner
-{year: '2004', image: 'https://cdn.midjourney.com/6db616b5-3242-44b7-a673-ec74467e0ede/0_3.webp', spotifyId: '0J3LsonEK3aD0oozS9EBWJ', hint: 'Læg mærke til hvor han kigger hen'}, // Drømmer jeg
-{year: '2014', image: 'https://cdn.midjourney.com/6f35b9df-5d24-4fad-9a1d-95d519e8ad9d/0_1.webp', spotifyId: '1QBfz0sWrMPrpvxjBPU5Jg', hint: 'Mange boksere har dette'}, // Hurtige hænder
-{year: '2018', image: 'https://cdn.midjourney.com/f61a08de-f714-4537-90ff-3a88c9028483/0_3.webp', spotifyId: '1lahfyqBPVvBIxf3XgmQmZ', hint: 'Mange danskere tager herhen i deres ferier'}, // Sydpå
-{year: '2017', image: 'https://cdn.midjourney.com/120bcc94-7baf-464b-9c32-ae31782e36a6/0_1.webp', spotifyId: '35C2waltlc5ymcJuBayTDg', hint: 'Læg mærke til hans hovedbeklædning'}, // Solkongen
-{year: '2015', image: 'https://cdn.midjourney.com/277eb6dc-d6aa-44e9-b64a-a273fcdaa50b/0_1.webp', spotifyId: '7qdykONOD1KESBGqyRDSkO', hint: '🎵 Hvorfor ik, hvorfor ik 🎵'}, // Fugle
-{year: '1990', image: 'https://cdn.midjourney.com/68c51989-2083-45c6-bac8-b9fee11af8f4/0_3.webp', spotifyId: '1rRcFwE1ydO2Y5jSmk1UIs', hint: 'Der er ikke nogen, der har pustet det ud'}, // Jeg Vil La Lyset Brænde;
+{year: '1986', image: 'https://cdn.midjourney.com/0fbd45e6-c25c-4d18-becc-ba22df64dd1d/0_0.png', spotifyId: '2azjvC3naXAE7O7VM1jjLR', hint: 'Et dansk bidrag til en krig langt væk'}, // Jutlandia
+{year: '2009', image: 'https://cdn.midjourney.com/2f5d299e-2aed-4acc-a0bc-1df4a97583fd/0_0.png', spotifyId: '5qbV1BltkZE7RUqSPfqQwV', hint: 'Hvad siger man typisk som noget af det første, når ens gæster ankommer?'}, // Velkommen til Medina
+{year: '2004', image: 'https://cdn.midjourney.com/a487e122-39b0-4136-8524-478bb27c1307/0_0.png', spotifyId: '0gloEpnKRspgRbp5jI7Bbd', hint: '🎵 Jeg rider på dig, min honey 🎵'}, // Elskovspony
+{year: '2006', image: 'https://cdn.midjourney.com/5768bee9-d296-4a76-8b47-82138748a267/0_0.png', spotifyId: '6gn1EGqw4G3xBdBPLA1WCF', hint: 'Han spiste af Kundskabens Træ'}, // Adam
+{year: '2009', image: 'https://cdn.midjourney.com/26af2227-7278-46d9-83a8-b16bcbb94333/0_0.png', spotifyId: '7iMHrq78z4ue6li3p8QKRr', hint: 'Ligesom brikkerne i puslespil, så hører de to sammen'}, // Vi to
+{year: '2019', image: 'https://cdn.midjourney.com/469b0f15-c8a1-4cee-a764-5f5be03b3923/0_3.webp', spotifyId: '4qII6s2bgtgO0FLw8LbfrV', hint: 'Man kan putte dette på mad, hvis det skal være stærkere'}, // Hot sauce
+{year: '2008', image: 'https://cdn.midjourney.com/ff1d0594-327a-4772-97c8-f343d06974fd/0_0.png', spotifyId: '1K1Silv1En6oJ8mr7Hj0nc', hint: 'Med denne, kan du tage din musik med overalt'}, // Walkmand
+{year: '2006', image: 'https://cdn.midjourney.com/3e3be346-8eac-455c-8f06-3bf9676d8e38/0_0.png', spotifyId: '5DCkZsgMcjcg4x21n7W97q', hint: 'Han går dårligt på hans en ben'}, // Kig forbi
+{year: '2005', image: 'https://cdn.midjourney.com/115fe928-ec98-43b6-a4f0-7fbdb3f9f6fa/0_3.png', spotifyId: '4EruvssHZCCL7g2SIolCox', hint: 'Man drikker dem her efter et nederlag'}, // Gravøl
+{year: '2016', image: 'https://cdn.midjourney.com/33087e68-d7c3-4fec-a036-46928b422685/0_1.webp', spotifyId: '2JzQJQyCBASBg6BmPUHR2l', hint: 'Hvad har Joe Biden og Barack Obama tilfælles?'}, // Gizpræsidenter
+{year: '2018', image: 'https://cdn.midjourney.com/fd790ce7-4815-4f25-89a6-fb92c39f17e1/0_2.webp', spotifyId: '1UZtPx4bgd7x75fbpOvOkM', hint: 'Den er med til at dæmpe lyset fra elpæren'}, // Lampeskærm
+{year: '2003', image: 'https://cdn.midjourney.com/f9a75a47-9978-4a16-a64d-116b71db1097/0_1.png', spotifyId: '2iJKaeALUQl94eRbGbeUUS', hint: 'Mange gør det her når de sover'}, // Arabiens drøm
+{year: '2012', image: 'https://cdn.midjourney.com/31ee1116-b1eb-4175-9d33-e33f98d161ee/0_2.png', spotifyId: '6rIeYmk5oDB7QoJNRJVOgS', hint: 'Motoren er tændt, men bilen holder stille'}, // Tomgang
+{year: '2016', image: 'https://cdn.midjourney.com/21a0552e-33b1-4fbb-a348-fd0916df23e0/0_0.png', spotifyId: '7Gf2vkf59IaWPu3Kb5Tdmx', hint: 'Hvis du ser godt ud, har du en chance for at blive dette'}, // Model
+{year: '2009', image: 'https://cdn.midjourney.com/7d4285ed-eb87-4c7f-a866-9277e61332c4/0_0.png', spotifyId: '0hBKtYtKbVrdk2JKFMCw69', hint: 'De er langt fra storbyen'}, // Party i provinsen
+{year: '2012', image: 'https://cdn.midjourney.com/3ab95d68-8b33-4252-bb0d-69820091bf6b/0_0.png', spotifyId: '11h6W6x9TvZRHzm5qLW4XH', hint: 'Hun danser'}, // Kugledans
+{year: '2022', image: 'https://cdn.midjourney.com/a271d52c-3c26-4966-b871-bdec538b9017/0_3.png', spotifyId: '5Mx9Hf6G4nZoTp5Ll9AH73', hint: 'Læg mærke til bygningen i baggrunden'}, // Hjem fra fabrikken
+    //{year: '2024', image: 'image', spotifyId: 'spotify', hint: 'songhint'}, // song123
+
+
+
 
 ]; 
     var currentSong = 0;
